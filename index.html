@@ -1,14 +1,12 @@
 <!doctype html>
-<html lang="en" data-type="software">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>NomNom · Video menus for cafés and restaurants</title>
   <meta name="description" content="NomNom turns your QR menu into a video menu. Guests see every dish in motion before they order. Built for cafés and restaurants in India.">
-  <meta name="page-type" content="software">
-  <meta name="site-kind" content="software">
-  <meta name="theme-color" content="#f7f5f1">
-  <meta property="og:title" content="NomNom · The menu, now in motion">
+  <meta name="theme-color" content="#fbfaf8">
+  <meta property="og:title" content="NomNom · Menus that make people hungry">
   <meta property="og:description" content="Video menus for cafés and restaurants. Guests scan the table QR and see every dish in motion.">
   <meta property="og:image" content="assets/intro-poster.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
@@ -16,131 +14,125 @@
   <link rel="apple-touch-icon" href="assets/nomnom-512.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..800&family=Inter:wght@400..600&display=swap" rel="stylesheet">
   <style>
-    /* ---------- Tokens: warm stone neutrals, near-black chapters, NomNom orange ---------- */
+    /* ---------- Gallery white, true black chapters, one warm gradient (NomNom orange → chilli) ---------- */
     :root {
-      --ground: #f7f5f1; --surface: #ffffff; --stone: #ece8e1; --line: rgba(20, 18, 16, .10);
-      --ink: #141210; --ink-2: #3f3a34; --muted: #6a635b;
-      --night: #0e0d0c; --night-2: #1a1815; --night-muted: #a8a097;
-      --accent: #ff6a00; --accent-ink: #b84a00; --accent-soft: #fff1e6;
-      --sans: 'Geist', ui-sans-serif, -apple-system, 'SF Pro Text', system-ui, sans-serif;
-      --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
-      --wrap: 1200px; --gutter: clamp(20px, 5vw, 72px);
-      --r: 24px; --r-lg: 36px;
+      --bg: #fbfaf8; --bg-2: #f2f0ec; --card: #ffffff; --line: rgba(10, 10, 12, .08);
+      --ink: #0b0b0c; --ink-2: #2a2a2e; --muted: #6e6e73;
+      --night: #000; --night-2: #121214; --night-3: #1c1c1f; --on-night: #f5f5f7; --night-muted: #a1a1a6;
+      --orange: #ff6a00; --orange-ink: #c24d00;
+      --heat: linear-gradient(95deg, #ff8a00 0%, #ff6a00 38%, #ff3d2e 100%);
+      --display: 'Inter Tight', ui-sans-serif, -apple-system, 'SF Pro Display', system-ui, sans-serif;
+      --sans: 'Inter', ui-sans-serif, -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      --wrap: 1180px; --gutter: clamp(20px, 5vw, 64px); --r: 28px;
       --ease: cubic-bezier(.16, 1, .3, 1);
     }
     * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { background: var(--ground); -webkit-text-size-adjust: 100%; }
-    body { font: 400 17px/1.55 var(--sans); color: var(--ink); background: var(--ground); -webkit-font-smoothing: antialiased; }
+    html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+    body { font: 400 17px/1.55 var(--sans); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; letter-spacing: -.005em; }
     img, video { display: block; max-width: 100%; height: auto; }
     a { color: inherit; }
+    button { font: inherit; color: inherit; background: none; border: 0; cursor: pointer; }
     [hidden] { display: none !important; }
     .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
     .skip { position: absolute; left: -999px; top: 10px; z-index: 99; background: var(--ink); color: #fff; padding: 12px 18px; border-radius: 12px; }
     .skip:focus { left: 10px; }
-    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 10px; }
 
-    .label { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
-    .night .label { color: #ff9a4d; }
-    h1, h2, h3 { font-family: var(--sans); font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
-    h1 { font-size: clamp(48px, 8.6vw, 112px); line-height: .95; letter-spacing: -.05em; }
-    h2 { font-size: clamp(38px, 5.6vw, 72px); line-height: 1; }
-    h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.02em; }
-    .grad { background: linear-gradient(92deg, #ff6a00 0%, #ff8a2b 55%, #e9541a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow { font: 600 15px/1.2 var(--display); color: var(--orange-ink); letter-spacing: -.005em; }
+    .night .eyebrow { color: #ff8a3d; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; text-wrap: balance; }
+    h1 { font-size: clamp(52px, 8.4vw, 112px); line-height: .96; letter-spacing: -.045em; }
+    h2 { font-size: clamp(40px, 5.8vw, 76px); line-height: 1; }
+    h3 { font-size: 24px; line-height: 1.15; letter-spacing: -.025em; }
+    .heat { background: var(--heat); -webkit-background-clip: text; background-clip: text; color: transparent; }
     .lede { font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; color: var(--muted); letter-spacing: -.01em; }
+    .night { background: var(--night); color: var(--on-night); }
     .night .lede { color: var(--night-muted); }
+    .center { text-align: center; }
 
-    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 0;
-      font: 500 16px var(--sans); text-decoration: none; cursor: pointer; transition: transform .3s var(--ease), background-color .2s, color .2s, box-shadow .3s var(--ease); }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 999px; font: 600 16px var(--sans); text-decoration: none;
+      transition: transform .3s var(--ease), background-color .2s, box-shadow .3s var(--ease); }
     .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: scale(.97); }
-    .btn-primary { background: var(--ink); color: #fff; }
-    .btn-primary:hover { background: #2a2622; box-shadow: 0 12px 30px rgba(20, 18, 16, .18); }
-    .btn-link { min-height: 44px; padding: 0 4px; background: none; color: var(--accent-ink); }
-    .btn-link svg { transition: transform .3s var(--ease); }
-    .btn-link:hover { transform: none; }
-    .btn-link:hover svg { transform: translateX(4px); }
-    .btn svg { width: 18px; height: 18px; }
-    .night .btn-primary { background: #fff; color: var(--ink); }
+    .btn-dark { background: var(--ink); color: #fff; }
+    .btn-dark:hover { background: #26262a; box-shadow: 0 12px 30px rgba(0, 0, 0, .16); }
+    .btn-heat { background: var(--heat); color: #fff; box-shadow: 0 10px 28px rgba(255, 90, 20, .3); }
+    .btn-heat:hover { box-shadow: 0 16px 36px rgba(255, 90, 20, .4); }
+    .link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 17px var(--sans); color: var(--orange-ink); text-decoration: none; }
+    .night .link { color: #ff8a3d; }
+    .link svg { width: 16px; height: 16px; transition: transform .3s var(--ease); }
+    .link:hover svg { transform: translateX(4px); }
 
     /* Nav */
-    .bar { position: sticky; top: 0; z-index: 60; background: rgba(247, 245, 241, .72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .bar { position: sticky; top: 0; z-index: 60; background: rgba(251, 250, 248, .78); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; transition: border-color .3s; }
     .bar.scrolled { border-color: var(--line); }
-    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
-    .logo { display: block; width: 78px; aspect-ratio: 640 / 380; background: url(assets/nomnom-logo.png) center / contain no-repeat; }
-    .bar nav ul { display: flex; gap: 28px; list-style: none; }
-    .bar nav a { font-size: 14.5px; color: var(--ink-2); text-decoration: none; padding: 10px 0; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 6px) / 0 1.5px no-repeat; transition: background-size .35s var(--ease), color .2s; }
-    .bar nav a:hover { color: var(--ink); background-size: 100% 1.5px; }
-    .bar .btn { min-height: 44px; padding: 0 18px; font-size: 14.5px; }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 60px; }
+    .logo { display: block; width: 70px; aspect-ratio: 640 / 380; background: url(assets/nomnom-logo-t.png) center / contain no-repeat; }
+    .bar nav ul { display: flex; gap: 32px; list-style: none; }
+    .bar nav a { font-size: 14px; color: var(--ink-2); text-decoration: none; padding: 10px 0; opacity: .85; transition: opacity .2s; }
+    .bar nav a:hover { opacity: 1; }
+    .bar .btn { min-height: 40px; padding: 0 18px; font-size: 14px; }
     @media (max-width: 900px) { .bar nav { display: none; } }
 
-    /* Hero */
-    .hero { padding: clamp(56px, 8vw, 110px) 0 0; text-align: center; overflow: hidden; }
-    .hero h1 { margin: 22px auto 0; max-width: 11ch; }
-    .hero .lede { margin: 24px auto 0; max-width: 34ch; }
-    .hero .ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 22px; margin-top: 34px; align-items: center; }
-    .stage { position: relative; margin: clamp(48px, 6vw, 80px) auto 0; width: min(92vw, 1100px); height: clamp(600px, 62vw, 760px); }
-    .stage .glow { position: absolute; left: 50%; top: 18%; width: 90%; height: 80%; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(255, 106, 0, .22), rgba(255, 106, 0, 0)); filter: blur(10px); }
-    .device { position: absolute; left: 50%; top: 0; width: clamp(270px, 25vw, 340px); aspect-ratio: 390 / 844; transform: translateX(-50%); padding: 11px; border-radius: 54px; background: linear-gradient(145deg, #2a2622, #0c0b0a); box-shadow: 0 2px 0 rgba(255, 255, 255, .06) inset, 0 50px 120px rgba(40, 20, 0, .28), 0 18px 40px rgba(40, 20, 0, .18); }
+    /* ---------- Hero ---------- */
+    .hero { padding-top: clamp(48px, 8vw, 104px); overflow: hidden; }
+    .hero .wrap { text-align: center; }
+    .hero h1 { margin: 18px auto 0; max-width: 12ch; }
+    .hero .lede { margin: 26px auto 0; max-width: 36ch; }
+    .hero .ctas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 26px; margin-top: 34px; }
+    .stage { position: relative; height: clamp(560px, 64vw, 780px); margin-top: clamp(50px, 6vw, 80px); perspective: 1600px; }
+    .stage::before { content: ''; position: absolute; left: 50%; top: 14%; width: min(900px, 96vw); height: 74%; transform: translateX(-50%); border-radius: 50%;
+      background: radial-gradient(closest-side, rgba(255, 106, 0, .26), rgba(255, 61, 46, .08) 60%, transparent); filter: blur(20px); }
+    .device { position: absolute; left: 50%; top: 0; width: clamp(270px, 25vw, 330px); aspect-ratio: 390 / 844; padding: 11px; border-radius: 54px;
+      background: linear-gradient(160deg, #3a3a3e, #0b0b0c 40%, #1b1b1e); box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 60px 120px rgba(40, 20, 0, .28), 0 20px 40px rgba(0, 0, 0, .16);
+      transform: translateX(-50%); transform-origin: 50% 30%; will-change: transform; }
     .screen { position: relative; width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #fbf6ef; container-type: inline-size; }
-    .screen .island { position: absolute; z-index: 9; left: 50%; top: 2.2%; width: 30%; height: 3.6%; border-radius: 30px; background: #0c0b0a; transform: translateX(-50%); }
+    .screen .island { position: absolute; z-index: 9; left: 50%; top: 2.2%; width: 30%; height: 3.6%; border-radius: 30px; background: #000; transform: translateX(-50%); }
     .screen > img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
-    /* The featured card in the hero phone plays a real clip, laid exactly over the card in the screenshot */
     .live-card { position: absolute; left: 4.62%; top: 45.85%; width: 65.38%; height: 37.68%; border-radius: 5.2cqw; overflow: hidden; z-index: 2; background: #2a221c; }
     .live-card video { width: 100%; height: 100%; object-fit: cover; }
     .live-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20, 14, 10, .82)); }
     .live-card .meta { position: absolute; left: 7%; right: 7%; bottom: 6%; z-index: 2; color: #fff; text-align: left; }
     .live-card .chip { display: inline-block; padding: 1.3cqw 3cqw; border-radius: 99px; background: #e0a96d; color: #1b120a; font: 600 3.3cqw/1.2 var(--sans); }
-    .live-card b { display: block; margin-top: 2cqw; font: 700 5.6cqw/1.1 var(--sans); letter-spacing: -.02em; }
+    .live-card b { display: block; margin-top: 2cqw; font: 700 5.6cqw/1.1 var(--display); letter-spacing: -.02em; }
     .live-card small { display: block; margin-top: 1.4cqw; font: 600 4.2cqw var(--sans); }
-    .float { position: absolute; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 18px; background: rgba(255, 255, 255, .88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(40, 20, 0, .14); text-align: left; }
-    .float .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-ink); flex: none; }
-    .float .ic svg { width: 22px; height: 22px; }
-    .float b { display: block; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
-    .float span { display: block; font-size: 13px; color: var(--muted); }
-    .f1 { left: 4%; top: 22%; } .f2 { right: 3%; top: 12%; } .f3 { right: 7%; top: 58%; } .f4 { left: 9%; top: 64%; }
-    @media (max-width: 760px) { .f2, .f4 { display: none; } .f1 { left: 0; top: 6%; } .f3 { right: 0; top: 70%; } }
+    .pill { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 999px; background: rgba(255, 255, 255, .86);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(40, 20, 0, .12); font: 600 14.5px var(--sans); white-space: nowrap; will-change: transform; }
+    .pill .dot { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--heat); color: #fff; }
+    .pill .dot svg { width: 14px; height: 14px; }
+    .p1 { left: 8%; top: 20%; } .p2 { right: 7%; top: 34%; } .p3 { left: 13%; top: 62%; } .p4 { right: 11%; top: 72%; }
+    @media (max-width: 760px) { .p3, .p4 { display: none; } .p1 { left: 0; top: 8%; } .p2 { right: 0; top: 60%; } }
 
-    section { scroll-margin-top: 70px; }
-    .sec { padding: clamp(96px, 12vw, 160px) 0; }
-    .sec-head { max-width: 780px; }
-    .sec-head.center { margin: 0 auto; text-align: center; }
-    .sec-head h2 { margin-top: 18px; }
-    .sec-head .lede { margin-top: 22px; }
-    .sec-head.center .lede { margin-left: auto; margin-right: auto; max-width: 40ch; }
-    .night { background: var(--night); color: #f4efe8; }
+    /* ---------- Problem: the sentence lights up as you scroll ---------- */
+    .reveal { height: 240vh; position: relative; }
+    .reveal .pin { position: sticky; top: 0; height: 100vh; display: grid; align-items: center; }
+    .reveal p.big { max-width: 21ch; font: 700 clamp(36px, 5.6vw, 78px)/1.06 var(--display); letter-spacing: -.04em; }
+    .reveal .w { color: rgba(245, 245, 247, .14); transition: color .2s linear; }
+    .reveal .w.on { color: var(--on-night); }
+    .reveal .w.hot.on { background: var(--heat); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .reveal .eyebrow { display: block; margin-bottom: 26px; }
 
-    /* Problem: words light up as you scroll (sticky inside its own section) */
-    .reveal { height: 260vh; position: relative; }
-    .reveal .pin { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; }
-    .reveal p.big { max-width: 22ch; font: 600 clamp(34px, 5.4vw, 74px)/1.08 var(--sans); letter-spacing: -.04em; text-wrap: balance; }
-    .reveal .w { color: rgba(244, 239, 232, .16); transition: color .25s linear; }
-    .reveal .w.on { color: #f4efe8; }
-    .reveal .w.hot.on { color: #ff8a2b; }
-    .reveal .label { margin-bottom: 30px; display: block; }
+    /* ---------- Zoom: a dish grows from a card to the whole screen ---------- */
+    .zoom { height: 260vh; position: relative; background: var(--night); }
+    .zoom .pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: grid; place-items: center; }
+    .zoom .frame { position: relative; width: 100vw; height: 100vh; border-radius: 0; overflow: hidden; transform-origin: 50% 50%; will-change: transform, border-radius; }
+    .zoom video { width: 100%; height: 100%; object-fit: cover; }
+    .zoom .frame::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0, 0, 0, .25), transparent 30%, transparent 55%, rgba(0, 0, 0, .7)); }
+    .zoom .lines { position: absolute; inset: 0; z-index: 2; display: grid; place-items: center; text-align: center; color: #fff; pointer-events: none; }
+    .zoom .lines p { grid-area: 1 / 1; font: 700 clamp(40px, 6.6vw, 92px)/1 var(--display); letter-spacing: -.045em; opacity: 0; transform: translateY(20px); transition: opacity .5s var(--ease), transform .7s var(--ease); text-shadow: 0 4px 40px rgba(0, 0, 0, .4); padding: 0 20px; }
+    .zoom .lines p.on { opacity: 1; transform: none; }
+    .zoom .tag { position: absolute; z-index: 2; left: 50%; bottom: 7vh; transform: translateX(-50%); display: flex; gap: 14px; align-items: baseline; padding: 12px 20px; border-radius: 999px; background: rgba(0, 0, 0, .45); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); color: #fff; font: 600 16px var(--sans); white-space: nowrap; }
+    .zoom .tag b { font-family: var(--display); font-size: 18px; }
 
-    /* Food in motion */
-    .motion-grid { margin-top: 64px; display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; }
-    .clip { position: relative; border-radius: var(--r); overflow: hidden; background: var(--night-2); aspect-ratio: 4 / 5; }
-    .clip:first-child { grid-row: span 2; aspect-ratio: auto; }
-    .clip video, .clip > img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
-    .clip:hover video { transform: scale(1.03); }
-    .clip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 8, 6, .8)); pointer-events: none; }
-    .clip figcaption { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; color: #fff; }
-    .clip figcaption b { font: 600 22px/1.15 var(--sans); letter-spacing: -.02em; }
-    .clip figcaption span { font: 500 14px var(--mono); color: #ffd2ad; }
-    .motion-note { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-top: 40px; color: var(--night-muted); }
-    .motion-note div { display: flex; align-items: center; gap: 12px; font-size: 16px; }
-    .motion-note svg { width: 22px; height: 22px; color: #ff9a4d; flex: none; }
-    @media (max-width: 860px) { .motion-grid { grid-template-columns: 1fr 1fr; } .clip:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 5; } }
-
-    /* Guest journey: sticky phone, steps scroll past it */
-    .journey .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); }
-    .journey-head-m { display: none; }
-    @media (max-width: 860px) { .journey-head-m { display: block; padding: 90px 0 10px; } .journey-head-d { display: none; } }
-    .journey .sticky { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; }
-    .journey .device { position: relative; left: auto; transform: none; width: clamp(260px, 24vw, 330px); }
+    /* ---------- Guest journey: sticky phone ---------- */
+    .journey { padding: clamp(96px, 11vw, 150px) 0 0; }
+    .journey .head { text-align: center; max-width: 820px; margin: 0 auto; }
+    .journey .head .lede { margin: 20px auto 0; max-width: 38ch; }
+    .journey .grid { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 96px); margin-top: clamp(30px, 5vw, 60px); }
+    .journey .sticky { position: sticky; top: 60px; height: calc(100vh - 60px); display: grid; place-items: center; }
+    .journey .device { position: relative; left: auto; transform: none; width: clamp(250px, 23vw, 320px); }
     .journey .screen > [data-step] { opacity: 0; transition: opacity .6s var(--ease); }
     .journey .screen > [data-step].on { opacity: 1; }
     .journey .screen > img.full { transition: opacity .6s var(--ease), transform 1.8s var(--ease); }
@@ -148,279 +140,300 @@
     .scanner { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; background: #fbf6ef; }
     .scanner .qr { position: relative; width: 58%; aspect-ratio: 1; padding: 6%; border-radius: 8%; background: #fff; box-shadow: 0 10px 30px rgba(40, 20, 0, .12); }
     .scanner .qr svg { width: 100%; height: 100%; }
-    .scanner .beam { position: absolute; left: 6%; right: 6%; top: 10%; height: 2.5%; border-radius: 4px; background: var(--accent); box-shadow: 0 0 16px var(--accent); animation: beam 2.2s ease-in-out infinite alternate; }
+    .scanner .beam { position: absolute; left: 6%; right: 6%; top: 10%; height: 2.5%; border-radius: 4px; background: var(--orange); box-shadow: 0 0 16px var(--orange); animation: beam 2.2s ease-in-out infinite alternate; }
     @keyframes beam { to { top: 88%; } }
-    .scanner p { position: absolute; bottom: 22%; font: 600 5cqw var(--sans); color: var(--ink); letter-spacing: -.02em; }
+    .scanner p { position: absolute; bottom: 22%; font: 700 5cqw var(--display); letter-spacing: -.02em; }
     .live-sheet { position: absolute; left: 0; right: 0; top: 6%; height: 57.8%; z-index: 2; overflow: hidden; background: #1d1813; }
     .live-sheet video { width: 100%; height: 100%; object-fit: cover; }
-    .steps { list-style: none; padding: 20vh 0 30vh; }
-    .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; opacity: .28; transition: opacity .5s var(--ease); }
+    .steps { list-style: none; }
+    .step { min-height: 88vh; display: flex; flex-direction: column; justify-content: center; gap: 14px; opacity: .25; transition: opacity .5s var(--ease); }
+    .step:first-child { min-height: 70vh; }
     .step.on { opacity: 1; }
-    .step .n { font: 500 14px var(--mono); color: var(--accent-ink); }
-    .step h3 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -.035em; margin-top: 14px; }
-    .step p { color: var(--muted); font-size: 19px; margin-top: 16px; max-width: 36ch; }
+    .step .n { font: 700 15px var(--display); color: var(--orange-ink); }
+    .step h3 { font-size: clamp(32px, 3.6vw, 50px); line-height: 1.02; letter-spacing: -.04em; }
+    .step p { color: var(--muted); font-size: 19px; max-width: 34ch; }
     @media (max-width: 860px) {
-      .journey .wrap { grid-template-columns: 1fr; }
-      .journey .wrap { display: block; }
-      .journey .sticky { height: auto; top: 64px; z-index: 2; padding: 12px 0 14px; background: linear-gradient(var(--ground) 85%, rgba(247, 245, 241, 0)); }
-      .journey .sec-head { padding-top: 0 !important; }
+      .journey .grid { display: block; }
+      .journey .sticky { position: sticky; top: 60px; z-index: 2; height: auto; padding: 12px 0 16px; background: linear-gradient(var(--bg) 85%, rgba(251, 250, 248, 0)); }
       .journey .device { width: 150px; }
-      .steps { padding: 4vh 0 10vh; }
-      .step { min-height: 55vh; }
+      .step, .step:first-child { min-height: 56vh; }
     }
 
-    /* Owners: bento */
+    /* ---------- Owners: bento of working mini-tools ---------- */
+    .owners { background: var(--bg-2); padding: clamp(96px, 11vw, 150px) 0; }
+    .owners .head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: end; }
+    .owners h2 { font-size: clamp(46px, 6.6vw, 92px); line-height: .95; letter-spacing: -.05em; }
     .bento { margin-top: 64px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-    .tile { position: relative; overflow: hidden; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); padding: 30px; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+    .tile { position: relative; overflow: hidden; border-radius: var(--r); background: var(--card); padding: 30px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(0, 0, 0, .04); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
     .tile:hover { transform: translateY(-2px); box-shadow: 0 24px 60px rgba(40, 20, 0, .08); }
-    .tile .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-ink); }
-    .tile .ic svg { width: 22px; height: 22px; }
-    .tile h3 { margin-top: 20px; }
-    .tile p { color: var(--muted); margin-top: 8px; font-size: 16px; }
-    .t-wide { grid-column: span 4; padding: 0; display: grid; grid-template-columns: .8fr 1.2fr; min-height: 380px; background: var(--night); color: #f4efe8; border-color: transparent; }
-    .t-wide .txt { padding: 34px; display: flex; flex-direction: column; justify-content: flex-end; }
-    .t-wide p { color: var(--night-muted); }
-    .t-wide .ic { background: rgba(255, 106, 0, .16); color: #ff9a4d; }
-    .t-wide .shot { position: relative; overflow: hidden; }
-    .t-wide .shot img { position: absolute; left: 0; top: 34px; width: 160%; max-width: none; border-radius: 14px 0 0 0; box-shadow: -20px 0 60px rgba(0, 0, 0, .4); transition: transform 1s var(--ease); }
-    .t-wide:hover .shot img { transform: translateX(-3%); }
-    .t-2 { grid-column: span 2; }
-    .t-2.accent { background: var(--accent); color: #fff; border-color: transparent; }
-    .t-2.accent p { color: #fff1e6; }
-    .t-2.accent .ic { background: rgba(255, 255, 255, .2); color: #fff; }
-    .kpi { margin-top: 18px; display: flex; gap: 6px; align-items: flex-end; height: 70px; }
-    .kpi i { flex: 1; border-radius: 6px 6px 2px 2px; background: var(--stone); transform-origin: bottom; animation: rise 2.8s var(--ease) infinite alternate; }
-    .kpi i:nth-child(odd) { background: #ffd2ad; }
-    .kpi i:nth-child(6) { background: var(--accent); }
-    @keyframes rise { from { transform: scaleY(.55); } }
-    .kpi i:nth-child(2) { animation-delay: .3s; } .kpi i:nth-child(3) { animation-delay: .6s; } .kpi i:nth-child(4) { animation-delay: .9s; } .kpi i:nth-child(5) { animation-delay: 1.2s; } .kpi i:nth-child(6) { animation-delay: 1.5s; }
-    .ticket { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--ground); font: 500 13.5px/1.6 var(--mono); color: var(--ink-2); animation: ring 3.2s ease-in-out infinite; }
-    .ticket b { color: var(--accent-ink); font-weight: 500; }
-    @keyframes ring { 0%, 70%, 100% { transform: none; } 74% { transform: rotate(-1.2deg); } 78% { transform: rotate(1.2deg); } 82% { transform: rotate(-.6deg); } }
-    @media (max-width: 960px) { .bento { grid-template-columns: 1fr 1fr; } .t-wide { grid-column: span 2; grid-template-columns: 1fr; } .t-wide .shot { min-height: 260px; } .t-2 { grid-column: span 1; } }
-    @media (max-width: 600px) { .bento { grid-template-columns: 1fr; } .t-wide, .t-2 { grid-column: span 1; } }
+    .tile h3 { font-size: 26px; }
+    .tile p { color: var(--muted); font-size: 16px; }
+    .tile .demo { margin-top: auto; padding-top: 22px; }
+    .t4 { grid-column: span 4; } .t2 { grid-column: span 2; } .t3 { grid-column: span 3; }
+    .tile.dark { background: var(--night-2); color: var(--on-night); }
+    .tile.dark p { color: var(--night-muted); }
+    /* live orders */
+    .orders { display: grid; gap: 10px; }
+    .order { display: grid; grid-template-columns: auto 1fr auto; gap: 14px; align-items: center; padding: 14px 16px; border-radius: 16px; background: var(--night-3); font-size: 15px; animation: slidein .6s var(--ease) both; }
+    .order b { font: 700 16px var(--display); }
+    .order span.items { color: var(--night-muted); }
+    .order .st { padding: 4px 10px; border-radius: 999px; font: 600 12px var(--sans); background: rgba(255, 255, 255, .08); color: var(--night-muted); }
+    .order.new .st { background: var(--heat); color: #fff; }
+    .order .bell { width: 34px; height: 34px; border-radius: 10px; display: grid; place-items: center; background: rgba(255, 106, 0, .16); color: #ff8a3d; }
+    .order .bell svg { width: 18px; height: 18px; }
+    .order.new .bell { animation: bell 1s ease-in-out 2; }
+    @keyframes slidein { from { opacity: 0; transform: translateY(-14px); } }
+    @keyframes bell { 25% { transform: rotate(14deg); } 50% { transform: rotate(-12deg); } 75% { transform: rotate(6deg); } }
+    /* sold-out switch */
+    .dishrow { display: flex; align-items: center; gap: 14px; padding: 12px; border-radius: 18px; background: var(--bg); }
+    .dishrow img { width: 56px; height: 56px; border-radius: 12px; object-fit: cover; transition: filter .3s; }
+    .dishrow .nm { flex: 1; min-width: 0; }
+    .dishrow .nm b { display: block; font: 700 16px var(--display); letter-spacing: -.01em; }
+    .dishrow .nm span { font-size: 14px; color: var(--muted); }
+    .dishrow.out img { filter: grayscale(1) opacity(.6); }
+    .dishrow.out .nm span { color: #c2261b; font-weight: 600; }
+    .switch { position: relative; width: 52px; height: 32px; flex: none; }
+    .switch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
+    .switch i { position: absolute; inset: 0; border-radius: 99px; background: #34c759; transition: background .25s; pointer-events: none; }
+    .switch i::after { content: ''; position: absolute; top: 3px; left: 23px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .2); transition: left .3s var(--ease); }
+    .switch input:not(:checked) + i { background: #d1d1d6; }
+    .switch input:not(:checked) + i::after { left: 3px; }
+    .switch input:focus-visible + i { outline: 3px solid var(--orange); outline-offset: 3px; }
+    /* price editor */
+    .price-edit { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; align-items: stretch; }
+    .price-edit label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
+    .price-edit input { width: 100%; height: 52px; padding: 0 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--bg); font: 700 22px var(--display); color: var(--ink); }
+    .price-edit input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(255, 106, 0, .15); }
+    .guest-card { border-radius: 14px; background: var(--ink); color: #fff; padding: 12px 14px; display: grid; align-content: end; gap: 2px; position: relative; overflow: hidden; }
+    .guest-card small { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #a1a1a6; }
+    .guest-card b { font: 700 16px var(--display); }
+    .guest-card .pr { font: 700 20px var(--display); transition: color .3s; }
+    .guest-card .pr.flash { color: #ff8a3d; }
+    /* insights bars */
+    .bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
+    .bars i { flex: 1; border-radius: 8px 8px 3px 3px; background: #e9e6e0; transform-origin: bottom; animation: grow 1.2s var(--ease) both; }
+    .bars i.hi { background: var(--heat); }
+    @keyframes grow { from { transform: scaleY(.1); } }
+    .bars + .legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
+    /* QR sheet */
+    .qrs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .qrs div { aspect-ratio: .82; border-radius: 12px; background: var(--bg); display: grid; justify-items: center; align-content: center; gap: 6px; padding: 10px; font: 700 12px var(--display); }
+    .qrs svg { width: 72%; height: auto; }
+    @media (max-width: 960px) { .owners .head { grid-template-columns: 1fr; } .bento { grid-template-columns: 1fr 1fr; } .t4, .t3 { grid-column: span 2; } .t2 { grid-column: span 1; } }
+    @media (max-width: 620px) { .bento { grid-template-columns: 1fr; } .t4, .t3, .t2 { grid-column: auto; } }
 
-    .facts { margin-top: 60px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
-    .fact { padding: 30px 26px 0 0; }
-    .fact b { display: block; font: 600 clamp(26px, 3vw, 38px)/1 var(--sans); letter-spacing: -.04em; }
-    .fact span { display: block; color: var(--muted); margin-top: 10px; font-size: 16px; }
-    @media (max-width: 860px) { .facts { grid-template-columns: 1fr 1fr; gap: 10px 0; } }
-
-    .film .wrap { display: grid; grid-template-columns: 1fr 400px; gap: clamp(30px, 6vw, 90px); align-items: center; }
-    .film-frame { position: relative; aspect-ratio: 9 / 16; border-radius: 34px; overflow: hidden; background: #000; box-shadow: 0 40px 100px rgba(0, 0, 0, .5); }
+    /* ---------- Film ---------- */
+    .film { padding: clamp(96px, 11vw, 150px) 0; }
+    .film .wrap { display: grid; grid-template-columns: 1fr 380px; gap: clamp(40px, 6vw, 90px); align-items: center; }
+    .film .lede { margin-top: 20px; max-width: 34ch; }
+    .film .ctas { margin-top: 30px; }
+    .film-frame { position: relative; aspect-ratio: 9 / 16; border-radius: 34px; overflow: hidden; background: #111; box-shadow: 0 40px 100px rgba(0, 0, 0, .5); }
     .film-frame video { width: 100%; height: 100%; object-fit: cover; }
-    .play { position: absolute; inset: 0; display: grid; place-items: center; border: 0; background: rgba(10, 8, 6, .2); cursor: pointer; }
-    .play span { width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .92); color: var(--ink); transition: transform .35s var(--ease); }
+    .play { position: absolute; inset: 0; display: grid; place-items: center; background: rgba(0, 0, 0, .2); }
+    .play span { width: 86px; height: 86px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .92); color: #000; transition: transform .35s var(--ease); }
     .play:hover span { transform: scale(1.07); }
     .play svg { width: 30px; height: 30px; margin-left: 5px; }
-    @media (max-width: 860px) { .film .wrap { grid-template-columns: 1fr; } .film-frame { max-width: 360px; width: 100%; margin: 0 auto; } }
+    @media (max-width: 900px) { .film .wrap { grid-template-columns: 1fr; } .film-frame { width: 100%; max-width: 340px; margin: 0 auto; } }
 
-    .pilot-card { margin-top: 64px; display: grid; grid-template-columns: 1.2fr 1fr; border-radius: var(--r-lg); overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
-    .pilot-card .l, .pilot-card .r { padding: clamp(30px, 4vw, 56px); }
-    .pilot-card .r { background: var(--accent); color: #fff; display: flex; flex-direction: column; justify-content: space-between; gap: 26px; }
-    .pilot-card ul { list-style: none; display: grid; gap: 16px; margin-top: 26px; }
-    .pilot-card li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; font-size: 17px; }
-    .pilot-card li svg { width: 22px; height: 22px; color: var(--accent-ink); margin-top: 2px; }
-    .pilot-card .r h3 { font-size: clamp(28px, 3vw, 38px); line-height: 1.05; letter-spacing: -.035em; }
-    .pilot-card .r p { color: #fff1e6; margin-top: 12px; }
-    .pilot-card .r .btn { width: 100%; background: #fff; color: var(--ink); }
-    .pilot-card .r .btn + .btn { margin-top: 10px; background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .75); }
-    @media (max-width: 860px) { .pilot-card { grid-template-columns: 1fr; } }
-    .faq { margin-top: 56px; border-top: 1px solid var(--line); }
+    /* ---------- Pilot + FAQ ---------- */
+    .pilot { padding: clamp(96px, 11vw, 150px) 0; text-align: center; }
+    .pilot .lede { margin: 22px auto 0; max-width: 40ch; }
+    .offer { margin: 56px auto 0; max-width: 980px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; text-align: left; }
+    .offer div { padding: 24px; border-radius: 22px; background: var(--card); box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+    .offer b { display: block; font: 700 20px/1.2 var(--display); letter-spacing: -.02em; }
+    .offer span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
+    .pilot .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
+    .pilot .soon { margin-top: 16px; color: var(--muted); font-size: 15px; }
+    @media (max-width: 860px) { .offer { grid-template-columns: 1fr 1fr; } }
+    .faq { max-width: 860px; margin: 80px auto 0; text-align: left; }
+    .faq h3 { font-size: 32px; margin-bottom: 16px; }
     .faq details { border-bottom: 1px solid var(--line); }
-    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; font: 600 20px var(--sans); letter-spacing: -.02em; min-height: 44px; }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 22px 0; min-height: 44px; font: 600 19px var(--display); letter-spacing: -.015em; }
     .faq summary::-webkit-details-marker { display: none; }
-    .faq summary i { width: 30px; height: 30px; border-radius: 50%; background: var(--stone); display: grid; place-items: center; flex: none; transition: transform .35s var(--ease), background-color .2s; font-style: normal; }
-    .faq details[open] summary i { transform: rotate(45deg); background: var(--accent-soft); }
-    .faq details p { color: var(--muted); padding: 0 0 26px; max-width: 70ch; }
+    .faq summary i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-2); font-style: normal; flex: none; transition: transform .35s var(--ease); }
+    .faq details[open] summary i { transform: rotate(45deg); }
+    .faq details p { color: var(--muted); padding-bottom: 22px; max-width: 68ch; }
 
-    footer { padding: 56px 0 calc(48px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
-    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 30px; font-size: 14.5px; color: var(--muted); }
-    footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    footer { border-top: 1px solid var(--line); padding: 44px 0 calc(40px + env(safe-area-inset-bottom)); }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 30px; color: var(--muted); font-size: 14px; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 24px; }
     footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
     footer a:hover { color: var(--ink); }
 
-    .enter { animation: enter 1s var(--ease) both; }
-    .enter.d1 { animation-delay: .08s; } .enter.d2 { animation-delay: .16s; } .enter.d3 { animation-delay: .24s; } .enter.d4 { animation-delay: .34s; }
-    @keyframes enter { from { opacity: 0; transform: translateY(26px); } }
+    .rise { animation: rise 1s var(--ease) both; }
+    .rise.d1 { animation-delay: .08s; } .rise.d2 { animation-delay: .16s; } .rise.d3 { animation-delay: .24s; } .rise.d4 { animation-delay: .34s; }
+    @keyframes rise { from { opacity: 0; transform: translateY(26px); } }
     @media (prefers-reduced-motion: reduce) {
       *, *::before, *::after { animation: none !important; transition: none !important; }
-      .reveal { height: auto; } .reveal .pin { position: static; height: auto; padding: 120px 0; } .reveal .w { color: #f4efe8; }
+      .reveal, .zoom { height: auto; } .reveal .pin, .zoom .pin { position: static; height: auto; padding: 110px 0; }
+      .reveal .w { color: var(--on-night); } .zoom .frame { height: 70vh; } .zoom .lines p:first-child { opacity: 1; transform: none; }
       .step { opacity: 1; }
     }
   </style>
 </head>
 <body>
-  <!-- Deal: software page · palette: client brand (NomNom orange on warm stone, near-black chapters) · type: Geist + Geist Mono · moments: word-by-word reveal (problem), sticky phone journey -->
   <a class="skip" href="#main">Skip to content</a>
-
-  <header class="bar" id="top">
+  <header class="bar">
     <div class="wrap">
       <a class="logo" href="#top" aria-label="NomNom home"></a>
-      <nav aria-label="Main">
-        <ul>
-          <li><a href="#motion">Product</a></li>
-          <li><a href="#journey">How guests use it</a></li>
-          <li><a href="#owners">For owners</a></li>
-          <li><a href="#pilot">Pilot</a></li>
-        </ul>
-      </nav>
-      <a class="btn btn-primary" href="#pilot">Book a demo</a>
+      <nav aria-label="Main"><ul>
+        <li><a href="#journey">For guests</a></li>
+        <li><a href="#owners">For owners</a></li>
+        <li><a href="#film">Watch</a></li>
+        <li><a href="#pilot">Pilot</a></li>
+      </ul></nav>
+      <a class="btn btn-dark" href="#pilot">Book a demo</a>
     </div>
   </header>
 
   <main id="main">
-    <section class="hero" aria-labelledby="hero-title">
+    <!-- HERO -->
+    <section class="hero" id="top" aria-labelledby="hero-title">
       <div class="wrap">
-        <p class="label enter">Video menus for cafés &amp; restaurants</p>
-        <h1 id="hero-title" class="enter d1">The menu, now <span class="grad">in motion.</span></h1>
-        <p class="lede enter d2">NomNom turns your QR menu into short dish videos. Guests see what they’re ordering, notice your signature dishes, and you change prices in seconds.</p>
-        <div class="ctas enter d3">
-          <a class="btn btn-primary" href="#pilot">Book a demo</a>
-          <a class="btn btn-link" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open a live menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <p class="eyebrow rise">NomNom for cafés and restaurants</p>
+        <h1 id="hero-title" class="rise d1">Menus that make people <span class="heat">hungry.</span></h1>
+        <p class="lede rise d2">Guests scan the QR on their table and see every dish in motion. They notice your best dishes, and you change the menu in seconds.</p>
+        <div class="ctas rise d3">
+          <a class="btn btn-dark" href="#pilot">Book a demo</a>
+          <a class="link" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open a live menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </div>
       </div>
-      <div class="stage enter d4" id="stage">
-        <div class="glow" aria-hidden="true"></div>
+      <div class="stage rise d4" id="stage">
         <div class="device" id="hero-device">
           <div class="screen">
             <span class="island" aria-hidden="true"></span>
-            <img src="assets/app-top.jpg" alt="A café's NomNom menu on a phone, with a video of a latte being poured" width="780" height="1688">
+            <img src="assets/app-top.jpg" alt="A café’s NomNom menu on a phone, with a video of a latte being poured at the top" width="780" height="1688">
             <div class="live-card" aria-hidden="true">
               <video src="assets/clips/latte.mp4" poster="assets/clips/latte.jpg" muted loop playsinline autoplay preload="auto"></video>
-              <div class="meta"><span class="chip">Bestseller</span><b>Biscoff Latte</b><small>₹329</small></div>
+              <div class="meta"><span class="chip">Bestseller</span><b>Biscoff Latte</b><small>329</small></div>
             </div>
           </div>
         </div>
-        <div class="float f1" data-depth=".7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><div><b>Every dish on video</b><span>Silent loops, no buttons</span></div></div>
-        <div class="float f2" data-depth=".4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h3v3H7zM14 8h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg></span><div><b>Scan, no app</b><span>Opens from the phone camera</span></div></div>
-        <div class="float f3" data-depth=".9"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>Best sellers up front</b><span>You choose what guests see first</span></div></div>
-        <div class="float f4" data-depth=".55"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div><b>Table orders</b><span>Ring at your counter</span></div></div>
+        <div class="pill p1" data-depth=".6"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span>Every dish on video</div>
+        <div class="pill p2" data-depth="1"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg></span>No app to download</div>
+        <div class="pill p3" data-depth=".8"><span class="dot"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>Best sellers up front</div>
+        <div class="pill p4" data-depth=".5"><span class="dot"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></span>Orders to your counter</div>
       </div>
     </section>
 
+    <!-- PROBLEM -->
     <section class="night reveal" id="problem" aria-label="The problem with text menus">
+      <div class="pin"><div class="wrap">
+        <span class="eyebrow">The problem</span>
+        <p class="big" id="reveal-text">A guest reads “Pineapple Trifecta”, can’t picture it, and orders a cappuccino. Again. Your best dishes never get a chance.</p>
+      </div></div>
+    </section>
+
+    <!-- ZOOM -->
+    <section class="zoom" id="zoom" aria-label="Every dish in motion">
       <div class="pin">
-        <div class="wrap">
-          <span class="label">The problem</span>
-          <p class="big" id="reveal-text">A guest reads “Pineapple Trifecta”, can’t picture it, and orders a cappuccino. Again. Your best dishes never get a chance.</p>
+        <div class="frame" id="zoom-frame">
+          <video data-src="assets/clips/pizza.mp4" poster="assets/clips/pizza.jpg" muted loop playsinline preload="none" aria-label="A hot chicken pizza being sliced"></video>
+          <div class="lines" aria-hidden="true"><p class="on">Now they can see it.</p><p>The stretch. The crust.</p><p>Every dish, in motion.</p></div>
+          <div class="tag"><b>Chicken Pizza</b>389</div>
         </div>
       </div>
     </section>
 
-    <section class="sec night" id="motion" aria-labelledby="motion-title">
-      <div class="wrap">
-        <div class="sec-head">
-          <p class="label">The fix</p>
-          <h2 id="motion-title">Show the pour, the stretch, <span class="grad">the crunch.</span></h2>
-          <p class="lede">A five-second clip says what a paragraph can’t. NomNom plays a silent loop for every dish as guests scroll, so they order with confidence.</p>
-        </div>
-        <div class="motion-grid">
-          <figure class="clip"><video data-src="assets/clips/cappuccino.mp4" poster="assets/clips/cappuccino.jpg" muted loop playsinline preload="none" aria-label="Latte art being poured into a cappuccino"></video><figcaption><b>Cappuccino</b><span>₹289</span></figcaption></figure>
-          <figure class="clip"><video data-src="assets/clips/pizza.mp4" poster="assets/clips/pizza.jpg" muted loop playsinline preload="none" aria-label="A hot pizza being sliced"></video><figcaption><b>Chicken Pizza</b><span>₹389</span></figcaption></figure>
-          <figure class="clip"><video data-src="assets/clips/fries.mp4" poster="assets/clips/fries.jpg" muted loop playsinline preload="none" aria-label="Golden fries dipped in ketchup"></video><figcaption><b>Salted Fries</b><span>₹339</span></figcaption></figure>
-          <figure class="clip"><video data-src="assets/clips/latte.mp4" poster="assets/clips/latte.jpg" muted loop playsinline preload="none" aria-label="Milk poured into a Biscoff latte"></video><figcaption><b>Biscoff Latte</b><span>₹329</span></figcaption></figure>
-          <figure class="clip"><img src="assets/app-dish.jpg" alt="A dish page with suggestions for what goes well with it" loading="lazy" width="780" height="1688" style="object-position: top"><figcaption><b>Goes well with</b><span>+ upsell</span></figcaption></figure>
-        </div>
-        <div class="motion-note">
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>Small files that load on 4G</div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Upright phone videos fit perfectly</div>
-          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6"/></svg>Always muted, never pushy</div>
-        </div>
-      </div>
-    </section>
-
+    <!-- GUEST JOURNEY -->
     <section class="journey" id="journey" aria-labelledby="journey-title">
       <div class="wrap">
-        <div class="sec-head journey-head-m"><p class="label">How guests use it</p><h2>From table QR to order in <span class="grad">four taps.</span></h2></div>
-        <div class="sticky">
-          <div class="device" aria-hidden="true">
-            <div class="screen" id="journey-screen">
-              <span class="island"></span>
-              <div class="scanner on" data-step="0"><div class="qr" id="qr"><span class="beam"></span></div><p>Scan for the menu</p></div>
-              <img data-step="1" src="assets/app-top.jpg" alt="" loading="lazy" width="780" height="1688">
-              <img data-step="1b" src="assets/app-swiped.jpg" alt="" loading="lazy" width="780" height="1688">
-              <img class="full" data-step="2" src="assets/app-full.jpg" alt="" loading="lazy" width="780" height="7000">
-              <img data-step="3" src="assets/app-sheet.jpg" alt="" loading="lazy" width="780" height="1688">
-              <div class="live-sheet" data-step="3"><video data-src="assets/clips/cappuccino.mp4" muted loop playsinline preload="none"></video></div>
+        <div class="head">
+          <p class="eyebrow">For your guests</p>
+          <h2 id="journey-title">From table to order in <span class="heat">four taps.</span></h2>
+          <p class="lede">No app, no sign-up. Just the phone camera and a menu they actually want to scroll.</p>
+        </div>
+        <div class="grid">
+          <div class="sticky">
+            <div class="device" aria-hidden="true">
+              <div class="screen" id="journey-screen">
+                <span class="island"></span>
+                <div class="scanner on" data-step="0"><div class="qr" id="qr"><span class="beam"></span></div><p>Scan for the menu</p></div>
+                <img data-step="1" src="assets/app-top.jpg" alt="" loading="lazy" width="780" height="1688">
+                <img data-step="1b" src="assets/app-swiped.jpg" alt="" loading="lazy" width="780" height="1688">
+                <img class="full" data-step="2" src="assets/app-full.jpg" alt="" loading="lazy" width="780" height="7000">
+                <img data-step="3" src="assets/app-sheet.jpg" alt="" loading="lazy" width="780" height="1688">
+                <div class="live-sheet" data-step="3"><video data-src="assets/clips/cappuccino.mp4" muted loop playsinline preload="none"></video></div>
+              </div>
             </div>
           </div>
-        </div>
-        <div>
-          <div class="sec-head journey-head-d" style="padding-top: clamp(60px, 10vw, 140px)">
-            <p class="label">How guests use it</p>
-            <h2 id="journey-title">From table QR to order in <span class="grad">four taps.</span></h2>
-          </div>
           <ol class="steps">
-            <li class="step on" data-show="0"><span class="n">01</span><h3>Scan the QR on the table.</h3><p>The phone camera opens your menu straight away. No app to download, no sign-up, no waiting.</p></li>
-            <li class="step" data-show="1"><span class="n">02</span><h3>Swipe your signature dishes.</h3><p>Your featured dishes play as tall video cards, the first thing every guest sees.</p></li>
-            <li class="step" data-show="2"><span class="n">03</span><h3>See best sellers, then the full menu.</h3><p>A numbered top five, then clean sections that open one at a time. Veg marks and prices are always visible.</p></li>
-            <li class="step" data-show="3"><span class="n">04</span><h3>Tap a dish. Watch it. Add it.</h3><p>The dish page plays its clip, lists what goes well with it, and sends the order to your counter with the table number.</p></li>
+            <li class="step on" data-show="0"><span class="n">01 · Scan</span><h3>Point the camera at the table QR.</h3><p>Your menu opens straight away, already set to their table number.</p></li>
+            <li class="step" data-show="1"><span class="n">02 · Swipe</span><h3>Your signature dishes, playing first.</h3><p>Tall video cards they swipe through before anything else.</p></li>
+            <li class="step" data-show="2"><span class="n">03 · Browse</span><h3>Best sellers, then the full menu.</h3><p>A numbered top five, then tidy sections with veg marks and prices always visible.</p></li>
+            <li class="step" data-show="3"><span class="n">04 · Order</span><h3>Watch the dish. Add it.</h3><p>The dish page plays its clip, suggests what goes well with it, and sends the order to your counter.</p></li>
           </ol>
         </div>
       </div>
     </section>
 
-    <section class="sec" id="owners" aria-labelledby="owners-title">
+    <!-- OWNERS -->
+    <section class="owners" id="owners" aria-labelledby="owners-title">
       <div class="wrap">
-        <div class="sec-head">
-          <p class="label">For owners</p>
-          <h2 id="owners-title">Run your menu like <span class="grad">a storefront.</span></h2>
-          <p class="lede">One dashboard for dishes, videos, prices, orders and table QR codes. No designer, no reprinting.</p>
+        <div class="head">
+          <div>
+            <p class="eyebrow">For owners</p>
+            <h2 id="owners-title" style="margin-top: 14px">Your menu, under <span class="heat">your thumb.</span></h2>
+          </div>
+          <p class="lede">Prices, videos, sold-out dishes, table orders and QR codes, all from one dashboard on your phone or laptop. Try it below.</p>
         </div>
         <div class="bento">
-          <article class="tile t-wide">
-            <div class="txt">
-              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
-              <h3>Change a price in seconds.</h3>
-              <p>Edit dishes, mark something sold out, or add tonight’s special. Every table sees it straight away.</p>
+          <article class="tile dark t4" aria-labelledby="o1">
+            <h3 id="o1">Orders ring at your counter.</h3>
+            <p>Each order arrives with the table number. Turn table ordering on or off with one switch.</p>
+            <div class="demo"><div class="orders" id="orders" aria-live="polite"></div></div>
+          </article>
+          <article class="tile t2" aria-labelledby="o2">
+            <h3 id="o2">Sold out? One tap.</h3>
+            <p>Guests stop seeing it instantly.</p>
+            <div class="demo">
+              <div class="dishrow" id="dishrow">
+                <img src="assets/clips/cappuccino.jpg" alt="" width="56" height="56">
+                <div class="nm"><b>Cappuccino</b><span id="dish-state">Available</span></div>
+                <label class="switch"><input type="checkbox" id="avail" checked aria-label="Cappuccino available"><i></i></label>
+              </div>
             </div>
-            <div class="shot"><img src="assets/dashboard.jpg" alt="The NomNom dashboard listing dishes with availability switches" loading="lazy" width="1440" height="880"></div>
           </article>
-          <article class="tile t-2 accent">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h18v4H3zM5 7v13h14V7M9 11h6"/></svg></span>
-            <h3>Import your menu.</h3>
-            <p>From Excel or CSV, or straight from your Zomato listing.</p>
+          <article class="tile t3" aria-labelledby="o3">
+            <h3 id="o3">Change a price. It’s live.</h3>
+            <p>No reprinting. Type a new price and watch the guest’s menu update.</p>
+            <div class="demo price-edit">
+              <label>Your dashboard<input id="price" type="number" inputmode="numeric" value="329" min="0" max="9999" aria-label="Price of Biscoff Latte"></label>
+              <div class="guest-card" aria-live="polite"><small>Guest’s phone</small><b>Biscoff Latte</b><span class="pr" id="guest-price">329</span></div>
+            </div>
           </article>
-          <article class="tile t-2">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
-            <h3>Orders ring at the counter.</h3>
-            <p>Table ordering on or off with one switch.</p>
-            <div class="ticket" aria-hidden="true"><b>NEW · Table 4</b><br>2 × Biscoff Latte<br>1 × Chicken Pesto Sandwich</div>
+          <article class="tile t3" aria-labelledby="o4">
+            <h3 id="o4">See what guests explore.</h3>
+            <p>Orders by day, week and month, and which video dishes sell best.</p>
+            <div class="demo"><div class="bars" aria-hidden="true"><i style="height:40%"></i><i style="height:58%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:64%"></i><i class="hi" style="height:96%"></i><i style="height:80%"></i></div><div class="legend" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
           </article>
-          <article class="tile t-2">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
-            <h3>See what guests explore.</h3>
-            <p>Orders by day, week and month, and which video dishes sell.</p>
-            <div class="kpi" aria-hidden="true"><i style="height:45%"></i><i style="height:62%"></i><i style="height:38%"></i><i style="height:75%"></i><i style="height:58%"></i><i style="height:92%"></i></div>
+          <article class="tile t3" aria-labelledby="o5">
+            <h3 id="o5">A QR for every table.</h3>
+            <p>Enter your table numbers and print a sheet. Each code opens the menu for that table, ready for ordering.</p>
+            <div class="demo qrs" id="qrs" aria-hidden="true"></div>
           </article>
-          <article class="tile t-2">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h3v3H7zM14 8h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg></span>
-            <h3>A QR for every table.</h3>
-            <p>Print-ready codes with the table number built in, plus one-scan Wi-Fi.</p>
+          <article class="tile t3" aria-labelledby="o6">
+            <h3 id="o6">Your menu, imported.</h3>
+            <p>Bring your dishes in from an Excel sheet, a CSV file or your Zomato listing, then add photos and clips.</p>
+            <div class="demo" style="display:flex; gap:10px; flex-wrap:wrap">
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Excel</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">CSV</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Zomato link</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Google reviews &amp; Instagram</span>
+            </div>
           </article>
-          <article class="tile t-2">
-            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
-            <h3>More Google reviews.</h3>
-            <p>Every menu ends with your Google review and Instagram buttons.</p>
-          </article>
-        </div>
-        <div class="facts">
-          <div class="fact"><b>₹ prices</b><span>Indian currency and formats</span></div>
-          <div class="fact"><b>Veg · Non-veg</b><span>Clear marks on every dish</span></div>
-          <div class="fact"><b>Any phone</b><span>Android and iPhone, no app</span></div>
-          <div class="fact"><b>4G-friendly</b><span>Photos first, videos right after</span></div>
         </div>
       </div>
     </section>
 
-    <section class="sec night film" id="film" aria-labelledby="film-title">
+    <!-- FILM -->
+    <section class="night film" id="film" aria-labelledby="film-title">
       <div class="wrap">
-        <div class="sec-head">
-          <p class="label">Watch</p>
-          <h2 id="film-title">NomNom in <span class="grad">one minute.</span></h2>
+        <div>
+          <p class="eyebrow">Watch</p>
+          <h2 id="film-title" style="margin-top: 14px">NomNom in <span class="heat">one minute.</span></h2>
           <p class="lede">Why text menus hold your dishes back, and what your guests see when they scan a NomNom QR.</p>
-          <div style="margin-top: 30px"><a class="btn btn-primary" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open the demo menu</a></div>
+          <div class="ctas"><a class="link" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open the demo menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="film-frame">
           <video id="film" src="assets/nomnom-intro.mp4" poster="assets/intro-poster.jpg" playsinline preload="none" aria-label="NomNom intro video"></video>
@@ -429,39 +442,28 @@
       </div>
     </section>
 
-    <section class="sec" id="pilot" aria-labelledby="pilot-title">
+    <!-- PILOT -->
+    <section class="pilot" id="pilot" aria-labelledby="pilot-title">
       <div class="wrap">
-        <div class="sec-head center">
-          <p class="label">Start with a pilot</p>
-          <h2 id="pilot-title">Try NomNom at your café <span class="grad">for 30 days.</span></h2>
-          <p class="lede">We set it up, you watch how guests use it, and then you decide.</p>
+        <p class="eyebrow">Start with a pilot</p>
+        <h2 id="pilot-title" style="margin-top: 14px">Try NomNom at your café <span class="heat">for 30 days.</span></h2>
+        <p class="lede">We set it up, you watch how guests use it, then you decide.</p>
+        <div class="offer">
+          <div><b>Menu set up for you</b><span>From Excel, Zomato or photos</span></div>
+          <div><b>10–20 dish clips</b><span>Your signature dishes first</span></div>
+          <div><b>QR for every table</b><span>Print-ready, numbered</span></div>
+          <div><b>Owner dashboard</b><span>Orders and insights</span></div>
         </div>
-        <div class="pilot-card">
-          <div class="l">
-            <h3>What’s included</h3>
-            <ul>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Your full menu set up from Excel, Zomato or photos</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Videos for 10–20 of your hero dishes to start</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Print-ready QR codes for every table</li>
-              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>The owner dashboard, with orders and insights</li>
-            </ul>
-          </div>
-          <div class="r">
-            <div>
-              <h3>See it on your own menu.</h3>
-              <p>A short demo with your dishes, on your phone.</p>
-            </div>
-            <div>
-              <a class="btn" id="cta-whatsapp" href="#" hidden>Message us on WhatsApp</a>
-              <a class="btn" id="cta-email" href="#" hidden>Email us</a>
-              <p id="cta-soon" style="font-size:15px">Contact details coming soon.</p>
-            </div>
-          </div>
+        <div class="ctas">
+          <a class="btn btn-heat" id="cta-whatsapp" href="#" hidden>Message us on WhatsApp</a>
+          <a class="btn btn-dark" id="cta-email" href="#" hidden>Email us</a>
         </div>
+        <p class="soon" id="cta-soon">Contact details coming soon.</p>
         <div class="faq">
+          <h3>Questions</h3>
           <details><summary>Do guests need to download an app?<i aria-hidden="true">+</i></summary><p>No. Guests scan the QR with their phone camera and the menu opens in the browser, on Android and iPhone.</p></details>
-          <details><summary>What if we don’t have videos of our dishes?<i aria-hidden="true">+</i></summary><p>Start with photos. Short clips shot on a phone work well, and NomNom resizes them so they load quickly. Begin with your 10–20 hero dishes and add more over time.</p></details>
-          <details><summary>Can we change prices and mark dishes sold out ourselves?<i aria-hidden="true">+</i></summary><p>Yes. The dashboard updates the live menu immediately, with no reprinting.</p></details>
+          <details><summary>We don’t have videos of our dishes. Is that a problem?<i aria-hidden="true">+</i></summary><p>Start with photos. Short clips shot on a phone work well, and NomNom resizes them so they load quickly. Begin with your 10–20 signature dishes and add more over time.</p></details>
+          <details><summary>Can we print a QR code for each table?<i aria-hidden="true">+</i></summary><p>Yes. Enter your table numbers (for example “1-12” or “1-8, Patio 1, Patio 2”) and the dashboard makes a print-ready sheet. Each code opens the menu with that table number, so table orders arrive labelled.</p></details>
           <details><summary>Does it work with our POS?<i aria-hidden="true">+</i></summary><p>Table orders arrive in the NomNom dashboard with the table number, and can be printed as a kitchen ticket or exported. Direct POS sync is on our roadmap.</p></details>
           <details><summary>Is table ordering required?<i aria-hidden="true">+</i></summary><p>No. Switch ordering off and NomNom works as a view-only video menu.</p></details>
         </div>
@@ -472,10 +474,7 @@
   <footer>
     <div class="wrap">
       <a class="logo" href="#top" aria-label="NomNom home"></a>
-      <nav aria-label="Footer">
-        <a href="#motion">Product</a><a href="#owners">For owners</a><a href="#pilot">Pilot</a>
-        <a href="https://officialprathamsharma.github.io/qr-menu/admin/">Owner sign-in</a>
-      </nav>
+      <nav aria-label="Footer"><a href="#journey">For guests</a><a href="#owners">For owners</a><a href="#pilot">Pilot</a><a href="https://officialprathamsharma.github.io/qr-menu/admin/">Owner sign-in</a></nav>
       <span>© <span id="year">2026</span> NomNom</span>
     </div>
   </footer>
@@ -485,8 +484,9 @@
     const $ = (s, el = document) => el.querySelector(s);
     const $$ = (s, el = document) => [...el.querySelectorAll(s)];
     const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const MENU = 'https://officialprathamsharma.github.io/qr-menu/';
 
-    // Contact details live in one place (filled in before publishing).
+    // Contact details live in one place.
     const CONTACT = { whatsapp: '', email: '' };
     if (CONTACT.whatsapp) { const a = $('#cta-whatsapp'); a.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hi NomNom, I’d like a demo for my café.')}`; a.hidden = false; }
     if (CONTACT.email) { const a = $('#cta-email'); a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent('NomNom demo')}`; a.hidden = false; }
@@ -494,54 +494,71 @@
     $('#year').textContent = new Date().getFullYear();
 
     const bar = $('.bar');
-    addEventListener('scroll', () => bar.classList.toggle('scrolled', scrollY > 4), { passive: true });
+    const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
 
-    try { const q = qrcode(0, 'M'); q.addData('https://officialprathamsharma.github.io/qr-menu/?r=demo&t=4'); q.make(); $('#qr').insertAdjacentHTML('afterbegin', q.createSvgTag({ cellSize: 4, margin: 0, scalable: true })); } catch (e) { /* offline: the card still shows */ }
+    // QR codes (journey phone + the per-table sheet)
+    const qrSvg = (url, cell = 3) => { try { const q = qrcode(0, 'M'); q.addData(url); q.make(); return q.createSvgTag({ cellSize: cell, margin: 0, scalable: true }); } catch { return ''; } };
+    $('#qr').insertAdjacentHTML('afterbegin', qrSvg(MENU + '?r=demo&t=4', 4));
+    $('#qrs').innerHTML = ['1', '2', '3', '4', '5', 'Patio 1'].map((t) => `<div>${qrSvg(`${MENU}?r=demo&t=${encodeURIComponent(t)}`)}Table ${t}</div>`).join('');
 
-    // Videos play only while on screen
+    // Videos play only on screen
     const vio = new IntersectionObserver((es) => es.forEach((e) => {
       const v = e.target;
       if (e.isIntersecting) { if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src; if (!reduced) v.play().catch(() => {}); }
       else v.pause();
-    }), { threshold: 0.2 });
-    $$('.clip video, .live-card video, .live-sheet video').forEach((v) => vio.observe(v));
+    }), { threshold: 0.15 });
+    $$('video[muted], .live-card video, .zoom video, .live-sheet video').forEach((v) => { if (v.id !== 'film') vio.observe(v); });
 
-    // Hero: the phone settles and the cards drift while the hero scrolls away
-    const device = $('#hero-device');
-    const floats = $$('.float');
-    const stage = $('#stage');
-    function heroScroll() {
-      const r = stage.getBoundingClientRect();
-      if (r.bottom < 0) return;
-      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / innerHeight));
-      device.style.transform = `translateX(-50%) translateY(${(1 - p) * 30}px) scale(${0.95 + p * 0.05})`;
-      floats.forEach((f) => { f.style.transform = `translateY(${(0.5 - p) * 80 * +f.dataset.depth}px)`; });
-    }
-
-    // Problem: words light up as the section scrolls past
+    // Problem sentence: words light up through the section
     const text = $('#reveal-text');
     const hot = new Set(['“Pineapple', 'Trifecta”,', 'best', 'dishes']);
     text.innerHTML = text.textContent.split(' ').map((w) => `<span class="w${hot.has(w) ? ' hot' : ''}">${w}</span>`).join(' ');
     const words = $$('.w', text);
-    const reveal = $('#problem');
-    function revealScroll() {
-      const r = reveal.getBoundingClientRect();
-      const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
-      const n = Math.round(p * words.length * 1.2);
-      words.forEach((w, i) => w.classList.toggle('on', i < n));
-    }
 
-    let tick = false;
-    function onScroll() { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; heroScroll(); revealScroll(); }); }
-    if (!reduced) { addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); }
+    // Scroll-linked moments (each lives inside its own section)
+    const device = $('#hero-device'), stage = $('#stage'), pills = $$('.pill[data-depth]');
+    const reveal = $('#problem'), zoom = $('#zoom'), frame = $('#zoom-frame'), lines = $$('.zoom .lines p');
+    function frameTick() {
+      bar.classList.toggle('scrolled', scrollY > 4);
+      if (reduced) return;
+      // hero: the phone tips back and settles as the hero scrolls away
+      const hr = stage.getBoundingClientRect();
+      if (hr.bottom > 0) {
+        const p = clamp(-hr.top / (hr.height * 0.9));
+        device.style.transform = `translateX(-50%) translateY(${p * 40}px) rotateX(${p * 14}deg) scale(${1 - p * 0.08})`;
+        pills.forEach((el) => { el.style.transform = `translateY(${-p * 120 * +el.dataset.depth}px)`; el.style.opacity = String(1 - p * 1.2); });
+      }
+      // problem
+      const rr = reveal.getBoundingClientRect();
+      if (rr.top < innerHeight && rr.bottom > 0) {
+        const p = clamp(-rr.top / (rr.height - innerHeight));
+        const n = Math.round(p * words.length * 1.2);
+        words.forEach((w, i) => w.classList.toggle('on', i < n));
+      }
+      // zoom: a phone-card-sized clip grows to the whole screen
+      const zr = zoom.getBoundingClientRect();
+      if (zr.top < innerHeight && zr.bottom > 0) {
+        const p = clamp(-zr.top / (zr.height - innerHeight));
+        const g = clamp(p / 0.55);
+        const small = Math.min(0.34, 320 / innerWidth);
+        const sx = small + (1 - small) * g, sy = (small * innerWidth * 1.25 / innerHeight) + (1 - small * innerWidth * 1.25 / innerHeight) * g;
+        frame.style.transform = `scale(${sx}, ${Math.min(1, sy)})`;
+        frame.style.borderRadius = `${(1 - g) * 60}px`;
+        const k = p < 0.4 ? 0 : p < 0.72 ? 1 : 2;
+        lines.forEach((l, i) => l.classList.toggle('on', i === k));
+      }
+    }
+    let ticking = false;
+    addEventListener('scroll', () => { if (ticking) return; ticking = true; requestAnimationFrame(() => { ticking = false; frameTick(); }); }, { passive: true });
+    addEventListener('resize', frameTick);
+    frameTick();
 
     // Journey: the phone shows the step in view
     const screens = $$('#journey-screen [data-step]');
     const full = $('#journey-screen .full');
     let swapT;
     function show(step) {
-      clearTimeout(swapT);
-      full.classList.remove('deep');
+      clearTimeout(swapT); full.classList.remove('deep');
       screens.forEach((s) => s.classList.toggle('on', s.dataset.step === String(step)));
       if (step === 1 && !reduced) swapT = setTimeout(() => screens.forEach((s) => s.classList.toggle('on', s.dataset.step === '1b')), 1800);
       if (step === 2 && !reduced) swapT = setTimeout(() => full.classList.add('deep'), 700);
@@ -552,6 +569,39 @@
       show(+e.target.dataset.show);
     }), { rootMargin: '-45% 0px -45% 0px' });
     $$('.step').forEach((s) => sio.observe(s));
+
+    // Owners: live orders
+    const orderFeed = [
+      ['Table 4', '2 × Biscoff Latte, 1 × Pizza'], ['Table 9', '1 × Cappuccino'], ['Patio 2', '3 × Iced Coco Latte'],
+      ['Table 2', '1 × Aglio e Olio, 1 × Mocha'], ['Table 7', '2 × Pesto Sandwich'],
+    ];
+    const bellSvg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg>';
+    const ordersEl = $('#orders');
+    let oi = 0;
+    function addOrder(state) {
+      const [t, items] = orderFeed[oi++ % orderFeed.length];
+      ordersEl.querySelectorAll('.order.new').forEach((o) => { o.classList.remove('new'); o.querySelector('.st').textContent = 'Preparing'; });
+      ordersEl.insertAdjacentHTML('afterbegin', `<div class="order ${state}"><span class="bell">${bellSvg}</span><span><b>${t}</b><br><span class="items">${items}</span></span><span class="st">${state === 'new' ? 'New' : 'Served'}</span></div>`);
+      while (ordersEl.children.length > 3) ordersEl.lastElementChild.remove();
+    }
+    addOrder(''); addOrder(''); addOrder('new');
+    let orderTimer;
+    new IntersectionObserver(([e]) => {
+      clearInterval(orderTimer);
+      if (e.isIntersecting && !reduced) orderTimer = setInterval(() => addOrder('new'), 3600);
+    }).observe(ordersEl);
+
+    // Owners: sold-out switch
+    $('#avail').addEventListener('change', (e) => {
+      $('#dishrow').classList.toggle('out', !e.target.checked);
+      $('#dish-state').textContent = e.target.checked ? 'Available' : 'Sold out today';
+      e.target.setAttribute('aria-label', `Cappuccino ${e.target.checked ? 'available' : 'sold out'}`);
+    });
+    // Owners: price editor
+    $('#price').addEventListener('input', (e) => {
+      const v = String(e.target.value).replace(/\D/g, '').slice(0, 4) || '0';
+      const out = $('#guest-price'); out.textContent = v; out.classList.add('flash'); setTimeout(() => out.classList.remove('flash'), 400);
+    });
 
     $('#play').addEventListener('click', () => { const v = $('#film'); v.controls = true; v.play(); $('#play').hidden = true; });
   </script>
