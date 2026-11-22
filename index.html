@@ -1,0 +1,559 @@
+<!doctype html>
+<html lang="en" data-type="software">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>NomNom · Video menus for cafés and restaurants</title>
+  <meta name="description" content="NomNom turns your QR menu into a video menu. Guests see every dish in motion before they order. Built for cafés and restaurants in India.">
+  <meta name="page-type" content="software">
+  <meta name="site-kind" content="software">
+  <meta name="theme-color" content="#f7f5f1">
+  <meta property="og:title" content="NomNom · The menu, now in motion">
+  <meta property="og:description" content="Video menus for cafés and restaurants. Guests scan the table QR and see every dish in motion.">
+  <meta property="og:image" content="assets/intro-poster.jpg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="assets/nomnom-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400..700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    /* ---------- Tokens: warm stone neutrals, near-black chapters, NomNom orange ---------- */
+    :root {
+      --ground: #f7f5f1; --surface: #ffffff; --stone: #ece8e1; --line: rgba(20, 18, 16, .10);
+      --ink: #141210; --ink-2: #3f3a34; --muted: #6a635b;
+      --night: #0e0d0c; --night-2: #1a1815; --night-muted: #a8a097;
+      --accent: #ff6a00; --accent-ink: #b84a00; --accent-soft: #fff1e6;
+      --sans: 'Geist', ui-sans-serif, -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      --mono: 'Geist Mono', ui-monospace, 'SF Mono', monospace;
+      --wrap: 1200px; --gutter: clamp(20px, 5vw, 72px);
+      --r: 24px; --r-lg: 36px;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--ground); -webkit-text-size-adjust: 100%; }
+    body { font: 400 17px/1.55 var(--sans); color: var(--ink); background: var(--ground); -webkit-font-smoothing: antialiased; }
+    img, video { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    [hidden] { display: none !important; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+    .skip { position: absolute; left: -999px; top: 10px; z-index: 99; background: var(--ink); color: #fff; padding: 12px 18px; border-radius: 12px; }
+    .skip:focus { left: 10px; }
+    :focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; border-radius: 10px; }
+
+    .label { font: 500 13px/1 var(--mono); letter-spacing: .08em; text-transform: uppercase; color: var(--accent-ink); }
+    .night .label { color: #ff9a4d; }
+    h1, h2, h3 { font-family: var(--sans); font-weight: 600; letter-spacing: -.035em; text-wrap: balance; }
+    h1 { font-size: clamp(48px, 8.6vw, 112px); line-height: .95; letter-spacing: -.05em; }
+    h2 { font-size: clamp(38px, 5.6vw, 72px); line-height: 1; }
+    h3 { font-size: 22px; line-height: 1.2; letter-spacing: -.02em; }
+    .grad { background: linear-gradient(92deg, #ff6a00 0%, #ff8a2b 55%, #e9541a 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .lede { font-size: clamp(19px, 1.7vw, 23px); line-height: 1.45; color: var(--muted); letter-spacing: -.01em; }
+    .night .lede { color: var(--night-muted); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 10px; min-height: 52px; padding: 0 26px; border-radius: 999px; border: 0;
+      font: 500 16px var(--sans); text-decoration: none; cursor: pointer; transition: transform .3s var(--ease), background-color .2s, color .2s, box-shadow .3s var(--ease); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn:active { transform: scale(.97); }
+    .btn-primary { background: var(--ink); color: #fff; }
+    .btn-primary:hover { background: #2a2622; box-shadow: 0 12px 30px rgba(20, 18, 16, .18); }
+    .btn-link { min-height: 44px; padding: 0 4px; background: none; color: var(--accent-ink); }
+    .btn-link svg { transition: transform .3s var(--ease); }
+    .btn-link:hover { transform: none; }
+    .btn-link:hover svg { transform: translateX(4px); }
+    .btn svg { width: 18px; height: 18px; }
+    .night .btn-primary { background: #fff; color: var(--ink); }
+
+    /* Nav */
+    .bar { position: sticky; top: 0; z-index: 60; background: rgba(247, 245, 241, .72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .bar.scrolled { border-color: var(--line); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 64px; }
+    .logo { display: block; width: 78px; aspect-ratio: 640 / 380; background: url(assets/nomnom-logo.png) center / contain no-repeat; }
+    .bar nav ul { display: flex; gap: 28px; list-style: none; }
+    .bar nav a { font-size: 14.5px; color: var(--ink-2); text-decoration: none; padding: 10px 0; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 6px) / 0 1.5px no-repeat; transition: background-size .35s var(--ease), color .2s; }
+    .bar nav a:hover { color: var(--ink); background-size: 100% 1.5px; }
+    .bar .btn { min-height: 44px; padding: 0 18px; font-size: 14.5px; }
+    @media (max-width: 900px) { .bar nav { display: none; } }
+
+    /* Hero */
+    .hero { padding: clamp(56px, 8vw, 110px) 0 0; text-align: center; overflow: hidden; }
+    .hero h1 { margin: 22px auto 0; max-width: 11ch; }
+    .hero .lede { margin: 24px auto 0; max-width: 34ch; }
+    .hero .ctas { display: flex; justify-content: center; flex-wrap: wrap; gap: 14px 22px; margin-top: 34px; align-items: center; }
+    .stage { position: relative; margin: clamp(48px, 6vw, 80px) auto 0; width: min(92vw, 1100px); height: clamp(600px, 62vw, 760px); }
+    .stage .glow { position: absolute; left: 50%; top: 18%; width: 90%; height: 80%; transform: translateX(-50%); background: radial-gradient(closest-side, rgba(255, 106, 0, .22), rgba(255, 106, 0, 0)); filter: blur(10px); }
+    .device { position: absolute; left: 50%; top: 0; width: clamp(270px, 25vw, 340px); aspect-ratio: 390 / 844; transform: translateX(-50%); padding: 11px; border-radius: 54px; background: linear-gradient(145deg, #2a2622, #0c0b0a); box-shadow: 0 2px 0 rgba(255, 255, 255, .06) inset, 0 50px 120px rgba(40, 20, 0, .28), 0 18px 40px rgba(40, 20, 0, .18); }
+    .screen { position: relative; width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #fbf6ef; container-type: inline-size; }
+    .screen .island { position: absolute; z-index: 9; left: 50%; top: 2.2%; width: 30%; height: 3.6%; border-radius: 30px; background: #0c0b0a; transform: translateX(-50%); }
+    .screen > img { position: absolute; left: 0; top: 0; width: 100%; height: auto; }
+    /* The featured card in the hero phone plays a real clip, laid exactly over the card in the screenshot */
+    .live-card { position: absolute; left: 4.62%; top: 45.85%; width: 65.38%; height: 37.68%; border-radius: 5.2cqw; overflow: hidden; z-index: 2; background: #2a221c; }
+    .live-card video { width: 100%; height: 100%; object-fit: cover; }
+    .live-card::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 45%, rgba(20, 14, 10, .82)); }
+    .live-card .meta { position: absolute; left: 7%; right: 7%; bottom: 6%; z-index: 2; color: #fff; text-align: left; }
+    .live-card .chip { display: inline-block; padding: 1.3cqw 3cqw; border-radius: 99px; background: #e0a96d; color: #1b120a; font: 600 3.3cqw/1.2 var(--sans); }
+    .live-card b { display: block; margin-top: 2cqw; font: 700 5.6cqw/1.1 var(--sans); letter-spacing: -.02em; }
+    .live-card small { display: block; margin-top: 1.4cqw; font: 600 4.2cqw var(--sans); }
+    .float { position: absolute; z-index: 3; display: flex; align-items: center; gap: 12px; padding: 14px 18px; border-radius: 18px; background: rgba(255, 255, 255, .88); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 20px 50px rgba(40, 20, 0, .14); text-align: left; }
+    .float .ic { width: 40px; height: 40px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-ink); flex: none; }
+    .float .ic svg { width: 22px; height: 22px; }
+    .float b { display: block; font-size: 15px; font-weight: 600; letter-spacing: -.01em; }
+    .float span { display: block; font-size: 13px; color: var(--muted); }
+    .f1 { left: 4%; top: 22%; } .f2 { right: 3%; top: 12%; } .f3 { right: 7%; top: 58%; } .f4 { left: 9%; top: 64%; }
+    @media (max-width: 760px) { .f2, .f4 { display: none; } .f1 { left: 0; top: 6%; } .f3 { right: 0; top: 70%; } }
+
+    section { scroll-margin-top: 70px; }
+    .sec { padding: clamp(96px, 12vw, 160px) 0; }
+    .sec-head { max-width: 780px; }
+    .sec-head.center { margin: 0 auto; text-align: center; }
+    .sec-head h2 { margin-top: 18px; }
+    .sec-head .lede { margin-top: 22px; }
+    .sec-head.center .lede { margin-left: auto; margin-right: auto; max-width: 40ch; }
+    .night { background: var(--night); color: #f4efe8; }
+
+    /* Problem: words light up as you scroll (sticky inside its own section) */
+    .reveal { height: 260vh; position: relative; }
+    .reveal .pin { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; }
+    .reveal p.big { max-width: 22ch; font: 600 clamp(34px, 5.4vw, 74px)/1.08 var(--sans); letter-spacing: -.04em; text-wrap: balance; }
+    .reveal .w { color: rgba(244, 239, 232, .16); transition: color .25s linear; }
+    .reveal .w.on { color: #f4efe8; }
+    .reveal .w.hot.on { color: #ff8a2b; }
+    .reveal .label { margin-bottom: 30px; display: block; }
+
+    /* Food in motion */
+    .motion-grid { margin-top: 64px; display: grid; grid-template-columns: 1.25fr 1fr 1fr; gap: 16px; }
+    .clip { position: relative; border-radius: var(--r); overflow: hidden; background: var(--night-2); aspect-ratio: 4 / 5; }
+    .clip:first-child { grid-row: span 2; aspect-ratio: auto; }
+    .clip video, .clip > img { width: 100%; height: 100%; object-fit: cover; transition: transform 1.2s var(--ease); }
+    .clip:hover video { transform: scale(1.03); }
+    .clip::after { content: ''; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 55%, rgba(10, 8, 6, .8)); pointer-events: none; }
+    .clip figcaption { position: absolute; left: 22px; right: 22px; bottom: 20px; z-index: 2; display: flex; justify-content: space-between; align-items: baseline; gap: 12px; color: #fff; }
+    .clip figcaption b { font: 600 22px/1.15 var(--sans); letter-spacing: -.02em; }
+    .clip figcaption span { font: 500 14px var(--mono); color: #ffd2ad; }
+    .motion-note { display: flex; flex-wrap: wrap; gap: 14px 40px; margin-top: 40px; color: var(--night-muted); }
+    .motion-note div { display: flex; align-items: center; gap: 12px; font-size: 16px; }
+    .motion-note svg { width: 22px; height: 22px; color: #ff9a4d; flex: none; }
+    @media (max-width: 860px) { .motion-grid { grid-template-columns: 1fr 1fr; } .clip:first-child { grid-column: span 2; grid-row: auto; aspect-ratio: 4 / 5; } }
+
+    /* Guest journey: sticky phone, steps scroll past it */
+    .journey .wrap { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(30px, 6vw, 90px); }
+    .journey-head-m { display: none; }
+    @media (max-width: 860px) { .journey-head-m { display: block; padding: 90px 0 10px; } .journey-head-d { display: none; } }
+    .journey .sticky { position: sticky; top: 0; height: 100vh; display: grid; place-items: center; }
+    .journey .device { position: relative; left: auto; transform: none; width: clamp(260px, 24vw, 330px); }
+    .journey .screen > [data-step] { opacity: 0; transition: opacity .6s var(--ease); }
+    .journey .screen > [data-step].on { opacity: 1; }
+    .journey .screen > img.full { transition: opacity .6s var(--ease), transform 1.8s var(--ease); }
+    .journey .screen > img.full.deep { transform: translateY(-30%); }
+    .scanner { position: absolute; inset: 0; z-index: 3; display: grid; place-items: center; background: #fbf6ef; }
+    .scanner .qr { position: relative; width: 58%; aspect-ratio: 1; padding: 6%; border-radius: 8%; background: #fff; box-shadow: 0 10px 30px rgba(40, 20, 0, .12); }
+    .scanner .qr svg { width: 100%; height: 100%; }
+    .scanner .beam { position: absolute; left: 6%; right: 6%; top: 10%; height: 2.5%; border-radius: 4px; background: var(--accent); box-shadow: 0 0 16px var(--accent); animation: beam 2.2s ease-in-out infinite alternate; }
+    @keyframes beam { to { top: 88%; } }
+    .scanner p { position: absolute; bottom: 22%; font: 600 5cqw var(--sans); color: var(--ink); letter-spacing: -.02em; }
+    .live-sheet { position: absolute; left: 0; right: 0; top: 6%; height: 57.8%; z-index: 2; overflow: hidden; background: #1d1813; }
+    .live-sheet video { width: 100%; height: 100%; object-fit: cover; }
+    .steps { list-style: none; padding: 20vh 0 30vh; }
+    .step { min-height: 70vh; display: flex; flex-direction: column; justify-content: center; opacity: .28; transition: opacity .5s var(--ease); }
+    .step.on { opacity: 1; }
+    .step .n { font: 500 14px var(--mono); color: var(--accent-ink); }
+    .step h3 { font-size: clamp(30px, 3.4vw, 46px); line-height: 1.05; letter-spacing: -.035em; margin-top: 14px; }
+    .step p { color: var(--muted); font-size: 19px; margin-top: 16px; max-width: 36ch; }
+    @media (max-width: 860px) {
+      .journey .wrap { grid-template-columns: 1fr; }
+      .journey .wrap { display: block; }
+      .journey .sticky { height: auto; top: 64px; z-index: 2; padding: 12px 0 14px; background: linear-gradient(var(--ground) 85%, rgba(247, 245, 241, 0)); }
+      .journey .sec-head { padding-top: 0 !important; }
+      .journey .device { width: 150px; }
+      .steps { padding: 4vh 0 10vh; }
+      .step { min-height: 55vh; }
+    }
+
+    /* Owners: bento */
+    .bento { margin-top: 64px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
+    .tile { position: relative; overflow: hidden; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line); padding: 30px; transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+    .tile:hover { transform: translateY(-2px); box-shadow: 0 24px 60px rgba(40, 20, 0, .08); }
+    .tile .ic { width: 44px; height: 44px; border-radius: 12px; display: grid; place-items: center; background: var(--accent-soft); color: var(--accent-ink); }
+    .tile .ic svg { width: 22px; height: 22px; }
+    .tile h3 { margin-top: 20px; }
+    .tile p { color: var(--muted); margin-top: 8px; font-size: 16px; }
+    .t-wide { grid-column: span 4; padding: 0; display: grid; grid-template-columns: .8fr 1.2fr; min-height: 380px; background: var(--night); color: #f4efe8; border-color: transparent; }
+    .t-wide .txt { padding: 34px; display: flex; flex-direction: column; justify-content: flex-end; }
+    .t-wide p { color: var(--night-muted); }
+    .t-wide .ic { background: rgba(255, 106, 0, .16); color: #ff9a4d; }
+    .t-wide .shot { position: relative; overflow: hidden; }
+    .t-wide .shot img { position: absolute; left: 0; top: 34px; width: 160%; max-width: none; border-radius: 14px 0 0 0; box-shadow: -20px 0 60px rgba(0, 0, 0, .4); transition: transform 1s var(--ease); }
+    .t-wide:hover .shot img { transform: translateX(-3%); }
+    .t-2 { grid-column: span 2; }
+    .t-2.accent { background: var(--accent); color: #fff; border-color: transparent; }
+    .t-2.accent p { color: #fff1e6; }
+    .t-2.accent .ic { background: rgba(255, 255, 255, .2); color: #fff; }
+    .kpi { margin-top: 18px; display: flex; gap: 6px; align-items: flex-end; height: 70px; }
+    .kpi i { flex: 1; border-radius: 6px 6px 2px 2px; background: var(--stone); transform-origin: bottom; animation: rise 2.8s var(--ease) infinite alternate; }
+    .kpi i:nth-child(odd) { background: #ffd2ad; }
+    .kpi i:nth-child(6) { background: var(--accent); }
+    @keyframes rise { from { transform: scaleY(.55); } }
+    .kpi i:nth-child(2) { animation-delay: .3s; } .kpi i:nth-child(3) { animation-delay: .6s; } .kpi i:nth-child(4) { animation-delay: .9s; } .kpi i:nth-child(5) { animation-delay: 1.2s; } .kpi i:nth-child(6) { animation-delay: 1.5s; }
+    .ticket { margin-top: 18px; padding: 14px 16px; border-radius: 14px; background: var(--ground); font: 500 13.5px/1.6 var(--mono); color: var(--ink-2); animation: ring 3.2s ease-in-out infinite; }
+    .ticket b { color: var(--accent-ink); font-weight: 500; }
+    @keyframes ring { 0%, 70%, 100% { transform: none; } 74% { transform: rotate(-1.2deg); } 78% { transform: rotate(1.2deg); } 82% { transform: rotate(-.6deg); } }
+    @media (max-width: 960px) { .bento { grid-template-columns: 1fr 1fr; } .t-wide { grid-column: span 2; grid-template-columns: 1fr; } .t-wide .shot { min-height: 260px; } .t-2 { grid-column: span 1; } }
+    @media (max-width: 600px) { .bento { grid-template-columns: 1fr; } .t-wide, .t-2 { grid-column: span 1; } }
+
+    .facts { margin-top: 60px; display: grid; grid-template-columns: repeat(4, 1fr); border-top: 1px solid var(--line); }
+    .fact { padding: 30px 26px 0 0; }
+    .fact b { display: block; font: 600 clamp(26px, 3vw, 38px)/1 var(--sans); letter-spacing: -.04em; }
+    .fact span { display: block; color: var(--muted); margin-top: 10px; font-size: 16px; }
+    @media (max-width: 860px) { .facts { grid-template-columns: 1fr 1fr; gap: 10px 0; } }
+
+    .film .wrap { display: grid; grid-template-columns: 1fr 400px; gap: clamp(30px, 6vw, 90px); align-items: center; }
+    .film-frame { position: relative; aspect-ratio: 9 / 16; border-radius: 34px; overflow: hidden; background: #000; box-shadow: 0 40px 100px rgba(0, 0, 0, .5); }
+    .film-frame video { width: 100%; height: 100%; object-fit: cover; }
+    .play { position: absolute; inset: 0; display: grid; place-items: center; border: 0; background: rgba(10, 8, 6, .2); cursor: pointer; }
+    .play span { width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; background: rgba(255, 255, 255, .92); color: var(--ink); transition: transform .35s var(--ease); }
+    .play:hover span { transform: scale(1.07); }
+    .play svg { width: 30px; height: 30px; margin-left: 5px; }
+    @media (max-width: 860px) { .film .wrap { grid-template-columns: 1fr; } .film-frame { max-width: 360px; width: 100%; margin: 0 auto; } }
+
+    .pilot-card { margin-top: 64px; display: grid; grid-template-columns: 1.2fr 1fr; border-radius: var(--r-lg); overflow: hidden; background: var(--surface); border: 1px solid var(--line); }
+    .pilot-card .l, .pilot-card .r { padding: clamp(30px, 4vw, 56px); }
+    .pilot-card .r { background: var(--accent); color: #fff; display: flex; flex-direction: column; justify-content: space-between; gap: 26px; }
+    .pilot-card ul { list-style: none; display: grid; gap: 16px; margin-top: 26px; }
+    .pilot-card li { display: grid; grid-template-columns: 24px 1fr; gap: 14px; font-size: 17px; }
+    .pilot-card li svg { width: 22px; height: 22px; color: var(--accent-ink); margin-top: 2px; }
+    .pilot-card .r h3 { font-size: clamp(28px, 3vw, 38px); line-height: 1.05; letter-spacing: -.035em; }
+    .pilot-card .r p { color: #fff1e6; margin-top: 12px; }
+    .pilot-card .r .btn { width: 100%; background: #fff; color: var(--ink); }
+    .pilot-card .r .btn + .btn { margin-top: 10px; background: transparent; color: #fff; box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .75); }
+    @media (max-width: 860px) { .pilot-card { grid-template-columns: 1fr; } }
+    .faq { margin-top: 56px; border-top: 1px solid var(--line); }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 24px 0; font: 600 20px var(--sans); letter-spacing: -.02em; min-height: 44px; }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary i { width: 30px; height: 30px; border-radius: 50%; background: var(--stone); display: grid; place-items: center; flex: none; transition: transform .35s var(--ease), background-color .2s; font-style: normal; }
+    .faq details[open] summary i { transform: rotate(45deg); background: var(--accent-soft); }
+    .faq details p { color: var(--muted); padding: 0 0 26px; max-width: 70ch; }
+
+    footer { padding: 56px 0 calc(48px + env(safe-area-inset-bottom)); border-top: 1px solid var(--line); }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px 30px; font-size: 14.5px; color: var(--muted); }
+    footer nav { display: flex; gap: 24px; flex-wrap: wrap; }
+    footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    footer a:hover { color: var(--ink); }
+
+    .enter { animation: enter 1s var(--ease) both; }
+    .enter.d1 { animation-delay: .08s; } .enter.d2 { animation-delay: .16s; } .enter.d3 { animation-delay: .24s; } .enter.d4 { animation-delay: .34s; }
+    @keyframes enter { from { opacity: 0; transform: translateY(26px); } }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+      .reveal { height: auto; } .reveal .pin { position: static; height: auto; padding: 120px 0; } .reveal .w { color: #f4efe8; }
+      .step { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Deal: software page · palette: client brand (NomNom orange on warm stone, near-black chapters) · type: Geist + Geist Mono · moments: word-by-word reveal (problem), sticky phone journey -->
+  <a class="skip" href="#main">Skip to content</a>
+
+  <header class="bar" id="top">
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="NomNom home"></a>
+      <nav aria-label="Main">
+        <ul>
+          <li><a href="#motion">Product</a></li>
+          <li><a href="#journey">How guests use it</a></li>
+          <li><a href="#owners">For owners</a></li>
+          <li><a href="#pilot">Pilot</a></li>
+        </ul>
+      </nav>
+      <a class="btn btn-primary" href="#pilot">Book a demo</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="wrap">
+        <p class="label enter">Video menus for cafés &amp; restaurants</p>
+        <h1 id="hero-title" class="enter d1">The menu, now <span class="grad">in motion.</span></h1>
+        <p class="lede enter d2">NomNom turns your QR menu into short dish videos. Guests see what they’re ordering, notice your signature dishes, and you change prices in seconds.</p>
+        <div class="ctas enter d3">
+          <a class="btn btn-primary" href="#pilot">Book a demo</a>
+          <a class="btn btn-link" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open a live menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        </div>
+      </div>
+      <div class="stage enter d4" id="stage">
+        <div class="glow" aria-hidden="true"></div>
+        <div class="device" id="hero-device">
+          <div class="screen">
+            <span class="island" aria-hidden="true"></span>
+            <img src="assets/app-top.jpg" alt="A café's NomNom menu on a phone, with a video of a latte being poured" width="780" height="1688">
+            <div class="live-card" aria-hidden="true">
+              <video src="assets/clips/latte.mp4" poster="assets/clips/latte.jpg" muted loop playsinline autoplay preload="auto"></video>
+              <div class="meta"><span class="chip">Bestseller</span><b>Biscoff Latte</b><small>₹329</small></div>
+            </div>
+          </div>
+        </div>
+        <div class="float f1" data-depth=".7"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="13" height="14" rx="2"/><path d="m16 10 5-3v10l-5-3"/></svg></span><div><b>Every dish on video</b><span>Silent loops, no buttons</span></div></div>
+        <div class="float f2" data-depth=".4"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h3v3H7zM14 8h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg></span><div><b>Scan, no app</b><span>Opens from the phone camera</span></div></div>
+        <div class="float f3" data-depth=".9"><span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span><div><b>Best sellers up front</b><span>You choose what guests see first</span></div></div>
+        <div class="float f4" data-depth=".55"><span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 8h14l-1 12H6zM9 8V6a3 3 0 0 1 6 0v2"/></svg></span><div><b>Table orders</b><span>Ring at your counter</span></div></div>
+      </div>
+    </section>
+
+    <section class="night reveal" id="problem" aria-label="The problem with text menus">
+      <div class="pin">
+        <div class="wrap">
+          <span class="label">The problem</span>
+          <p class="big" id="reveal-text">A guest reads “Pineapple Trifecta”, can’t picture it, and orders a cappuccino. Again. Your best dishes never get a chance.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec night" id="motion" aria-labelledby="motion-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label">The fix</p>
+          <h2 id="motion-title">Show the pour, the stretch, <span class="grad">the crunch.</span></h2>
+          <p class="lede">A five-second clip says what a paragraph can’t. NomNom plays a silent loop for every dish as guests scroll, so they order with confidence.</p>
+        </div>
+        <div class="motion-grid">
+          <figure class="clip"><video data-src="assets/clips/cappuccino.mp4" poster="assets/clips/cappuccino.jpg" muted loop playsinline preload="none" aria-label="Latte art being poured into a cappuccino"></video><figcaption><b>Cappuccino</b><span>₹289</span></figcaption></figure>
+          <figure class="clip"><video data-src="assets/clips/pizza.mp4" poster="assets/clips/pizza.jpg" muted loop playsinline preload="none" aria-label="A hot pizza being sliced"></video><figcaption><b>Chicken Pizza</b><span>₹389</span></figcaption></figure>
+          <figure class="clip"><video data-src="assets/clips/fries.mp4" poster="assets/clips/fries.jpg" muted loop playsinline preload="none" aria-label="Golden fries dipped in ketchup"></video><figcaption><b>Salted Fries</b><span>₹339</span></figcaption></figure>
+          <figure class="clip"><video data-src="assets/clips/latte.mp4" poster="assets/clips/latte.jpg" muted loop playsinline preload="none" aria-label="Milk poured into a Biscoff latte"></video><figcaption><b>Biscoff Latte</b><span>₹329</span></figcaption></figure>
+          <figure class="clip"><img src="assets/app-dish.jpg" alt="A dish page with suggestions for what goes well with it" loading="lazy" width="780" height="1688" style="object-position: top"><figcaption><b>Goes well with</b><span>+ upsell</span></figcaption></figure>
+        </div>
+        <div class="motion-note">
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M13 2 3 14h9l-1 8 10-12h-9z"/></svg>Small files that load on 4G</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="7" y="2" width="10" height="20" rx="2"/><path d="M11 18h2"/></svg>Upright phone videos fit perfectly</div>
+          <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4zM22 9l-6 6M16 9l6 6"/></svg>Always muted, never pushy</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="journey" id="journey" aria-labelledby="journey-title">
+      <div class="wrap">
+        <div class="sec-head journey-head-m"><p class="label">How guests use it</p><h2>From table QR to order in <span class="grad">four taps.</span></h2></div>
+        <div class="sticky">
+          <div class="device" aria-hidden="true">
+            <div class="screen" id="journey-screen">
+              <span class="island"></span>
+              <div class="scanner on" data-step="0"><div class="qr" id="qr"><span class="beam"></span></div><p>Scan for the menu</p></div>
+              <img data-step="1" src="assets/app-top.jpg" alt="" loading="lazy" width="780" height="1688">
+              <img data-step="1b" src="assets/app-swiped.jpg" alt="" loading="lazy" width="780" height="1688">
+              <img class="full" data-step="2" src="assets/app-full.jpg" alt="" loading="lazy" width="780" height="7000">
+              <img data-step="3" src="assets/app-sheet.jpg" alt="" loading="lazy" width="780" height="1688">
+              <div class="live-sheet" data-step="3"><video data-src="assets/clips/cappuccino.mp4" muted loop playsinline preload="none"></video></div>
+            </div>
+          </div>
+        </div>
+        <div>
+          <div class="sec-head journey-head-d" style="padding-top: clamp(60px, 10vw, 140px)">
+            <p class="label">How guests use it</p>
+            <h2 id="journey-title">From table QR to order in <span class="grad">four taps.</span></h2>
+          </div>
+          <ol class="steps">
+            <li class="step on" data-show="0"><span class="n">01</span><h3>Scan the QR on the table.</h3><p>The phone camera opens your menu straight away. No app to download, no sign-up, no waiting.</p></li>
+            <li class="step" data-show="1"><span class="n">02</span><h3>Swipe your signature dishes.</h3><p>Your featured dishes play as tall video cards, the first thing every guest sees.</p></li>
+            <li class="step" data-show="2"><span class="n">03</span><h3>See best sellers, then the full menu.</h3><p>A numbered top five, then clean sections that open one at a time. Veg marks and prices are always visible.</p></li>
+            <li class="step" data-show="3"><span class="n">04</span><h3>Tap a dish. Watch it. Add it.</h3><p>The dish page plays its clip, lists what goes well with it, and sends the order to your counter with the table number.</p></li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="owners" aria-labelledby="owners-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label">For owners</p>
+          <h2 id="owners-title">Run your menu like <span class="grad">a storefront.</span></h2>
+          <p class="lede">One dashboard for dishes, videos, prices, orders and table QR codes. No designer, no reprinting.</p>
+        </div>
+        <div class="bento">
+          <article class="tile t-wide">
+            <div class="txt">
+              <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg></span>
+              <h3>Change a price in seconds.</h3>
+              <p>Edit dishes, mark something sold out, or add tonight’s special. Every table sees it straight away.</p>
+            </div>
+            <div class="shot"><img src="assets/dashboard.jpg" alt="The NomNom dashboard listing dishes with availability switches" loading="lazy" width="1440" height="880"></div>
+          </article>
+          <article class="tile t-2 accent">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3h18v4H3zM5 7v13h14V7M9 11h6"/></svg></span>
+            <h3>Import your menu.</h3>
+            <p>From Excel or CSV, or straight from your Zomato listing.</p>
+          </article>
+          <article class="tile t-2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9M13.7 21a2 2 0 0 1-3.4 0"/></svg></span>
+            <h3>Orders ring at the counter.</h3>
+            <p>Table ordering on or off with one switch.</p>
+            <div class="ticket" aria-hidden="true"><b>NEW · Table 4</b><br>2 × Biscoff Latte<br>1 × Chicken Pesto Sandwich</div>
+          </article>
+          <article class="tile t-2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span>
+            <h3>See what guests explore.</h3>
+            <p>Orders by day, week and month, and which video dishes sell.</p>
+            <div class="kpi" aria-hidden="true"><i style="height:45%"></i><i style="height:62%"></i><i style="height:38%"></i><i style="height:75%"></i><i style="height:58%"></i><i style="height:92%"></i></div>
+          </article>
+          <article class="tile t-2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 7V5a2 2 0 0 1 2-2h2M17 3h2a2 2 0 0 1 2 2v2M21 17v2a2 2 0 0 1-2 2h-2M7 21H5a2 2 0 0 1-2-2v-2M7 8h3v3H7zM14 8h3v3h-3zM7 14h3v3H7zM14 14h3v3h-3z"/></svg></span>
+            <h3>A QR for every table.</h3>
+            <p>Print-ready codes with the table number built in, plus one-scan Wi-Fi.</p>
+          </article>
+          <article class="tile t-2">
+            <span class="ic"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="m12 3 2.7 5.6 6.1.9-4.4 4.3 1 6.1L12 17l-5.4 2.9 1-6.1-4.4-4.3 6.1-.9z"/></svg></span>
+            <h3>More Google reviews.</h3>
+            <p>Every menu ends with your Google review and Instagram buttons.</p>
+          </article>
+        </div>
+        <div class="facts">
+          <div class="fact"><b>₹ prices</b><span>Indian currency and formats</span></div>
+          <div class="fact"><b>Veg · Non-veg</b><span>Clear marks on every dish</span></div>
+          <div class="fact"><b>Any phone</b><span>Android and iPhone, no app</span></div>
+          <div class="fact"><b>4G-friendly</b><span>Photos first, videos right after</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec night film" id="film" aria-labelledby="film-title">
+      <div class="wrap">
+        <div class="sec-head">
+          <p class="label">Watch</p>
+          <h2 id="film-title">NomNom in <span class="grad">one minute.</span></h2>
+          <p class="lede">Why text menus hold your dishes back, and what your guests see when they scan a NomNom QR.</p>
+          <div style="margin-top: 30px"><a class="btn btn-primary" href="https://officialprathamsharma.github.io/qr-menu/?r=demo&amp;t=1" target="_blank" rel="noopener">Open the demo menu</a></div>
+        </div>
+        <div class="film-frame">
+          <video id="film" src="assets/nomnom-intro.mp4" poster="assets/intro-poster.jpg" playsinline preload="none" aria-label="NomNom intro video"></video>
+          <button class="play" id="play" type="button" aria-label="Play the NomNom intro video"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg></span></button>
+        </div>
+      </div>
+    </section>
+
+    <section class="sec" id="pilot" aria-labelledby="pilot-title">
+      <div class="wrap">
+        <div class="sec-head center">
+          <p class="label">Start with a pilot</p>
+          <h2 id="pilot-title">Try NomNom at your café <span class="grad">for 30 days.</span></h2>
+          <p class="lede">We set it up, you watch how guests use it, and then you decide.</p>
+        </div>
+        <div class="pilot-card">
+          <div class="l">
+            <h3>What’s included</h3>
+            <ul>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Your full menu set up from Excel, Zomato or photos</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Videos for 10–20 of your hero dishes to start</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>Print-ready QR codes for every table</li>
+              <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m5 12 5 5 9-10"/></svg>The owner dashboard, with orders and insights</li>
+            </ul>
+          </div>
+          <div class="r">
+            <div>
+              <h3>See it on your own menu.</h3>
+              <p>A short demo with your dishes, on your phone.</p>
+            </div>
+            <div>
+              <a class="btn" id="cta-whatsapp" href="#" hidden>Message us on WhatsApp</a>
+              <a class="btn" id="cta-email" href="#" hidden>Email us</a>
+              <p id="cta-soon" style="font-size:15px">Contact details coming soon.</p>
+            </div>
+          </div>
+        </div>
+        <div class="faq">
+          <details><summary>Do guests need to download an app?<i aria-hidden="true">+</i></summary><p>No. Guests scan the QR with their phone camera and the menu opens in the browser, on Android and iPhone.</p></details>
+          <details><summary>What if we don’t have videos of our dishes?<i aria-hidden="true">+</i></summary><p>Start with photos. Short clips shot on a phone work well, and NomNom resizes them so they load quickly. Begin with your 10–20 hero dishes and add more over time.</p></details>
+          <details><summary>Can we change prices and mark dishes sold out ourselves?<i aria-hidden="true">+</i></summary><p>Yes. The dashboard updates the live menu immediately, with no reprinting.</p></details>
+          <details><summary>Does it work with our POS?<i aria-hidden="true">+</i></summary><p>Table orders arrive in the NomNom dashboard with the table number, and can be printed as a kitchen ticket or exported. Direct POS sync is on our roadmap.</p></details>
+          <details><summary>Is table ordering required?<i aria-hidden="true">+</i></summary><p>No. Switch ordering off and NomNom works as a view-only video menu.</p></details>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="logo" href="#top" aria-label="NomNom home"></a>
+      <nav aria-label="Footer">
+        <a href="#motion">Product</a><a href="#owners">For owners</a><a href="#pilot">Pilot</a>
+        <a href="https://officialprathamsharma.github.io/qr-menu/admin/">Owner sign-in</a>
+      </nav>
+      <span>© <span id="year">2026</span> NomNom</span>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/qrcode-generator@1.4.4/qrcode.js"></script>
+  <script>
+    const $ = (s, el = document) => el.querySelector(s);
+    const $$ = (s, el = document) => [...el.querySelectorAll(s)];
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+    // Contact details live in one place (filled in before publishing).
+    const CONTACT = { whatsapp: '', email: '' };
+    if (CONTACT.whatsapp) { const a = $('#cta-whatsapp'); a.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hi NomNom, I’d like a demo for my café.')}`; a.hidden = false; }
+    if (CONTACT.email) { const a = $('#cta-email'); a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent('NomNom demo')}`; a.hidden = false; }
+    if (CONTACT.whatsapp || CONTACT.email) $('#cta-soon').hidden = true;
+    $('#year').textContent = new Date().getFullYear();
+
+    const bar = $('.bar');
+    addEventListener('scroll', () => bar.classList.toggle('scrolled', scrollY > 4), { passive: true });
+
+    try { const q = qrcode(0, 'M'); q.addData('https://officialprathamsharma.github.io/qr-menu/?r=demo&t=4'); q.make(); $('#qr').insertAdjacentHTML('afterbegin', q.createSvgTag({ cellSize: 4, margin: 0, scalable: true })); } catch (e) { /* offline: the card still shows */ }
+
+    // Videos play only while on screen
+    const vio = new IntersectionObserver((es) => es.forEach((e) => {
+      const v = e.target;
+      if (e.isIntersecting) { if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src; if (!reduced) v.play().catch(() => {}); }
+      else v.pause();
+    }), { threshold: 0.2 });
+    $$('.clip video, .live-card video, .live-sheet video').forEach((v) => vio.observe(v));
+
+    // Hero: the phone settles and the cards drift while the hero scrolls away
+    const device = $('#hero-device');
+    const floats = $$('.float');
+    const stage = $('#stage');
+    function heroScroll() {
+      const r = stage.getBoundingClientRect();
+      if (r.bottom < 0) return;
+      const p = Math.min(1, Math.max(0, (innerHeight - r.top) / innerHeight));
+      device.style.transform = `translateX(-50%) translateY(${(1 - p) * 30}px) scale(${0.95 + p * 0.05})`;
+      floats.forEach((f) => { f.style.transform = `translateY(${(0.5 - p) * 80 * +f.dataset.depth}px)`; });
+    }
+
+    // Problem: words light up as the section scrolls past
+    const text = $('#reveal-text');
+    const hot = new Set(['“Pineapple', 'Trifecta”,', 'best', 'dishes']);
+    text.innerHTML = text.textContent.split(' ').map((w) => `<span class="w${hot.has(w) ? ' hot' : ''}">${w}</span>`).join(' ');
+    const words = $$('.w', text);
+    const reveal = $('#problem');
+    function revealScroll() {
+      const r = reveal.getBoundingClientRect();
+      const p = Math.min(1, Math.max(0, -r.top / (r.height - innerHeight)));
+      const n = Math.round(p * words.length * 1.2);
+      words.forEach((w, i) => w.classList.toggle('on', i < n));
+    }
+
+    let tick = false;
+    function onScroll() { if (tick) return; tick = true; requestAnimationFrame(() => { tick = false; heroScroll(); revealScroll(); }); }
+    if (!reduced) { addEventListener('scroll', onScroll, { passive: true }); addEventListener('resize', onScroll); onScroll(); }
+
+    // Journey: the phone shows the step in view
+    const screens = $$('#journey-screen [data-step]');
+    const full = $('#journey-screen .full');
+    let swapT;
+    function show(step) {
+      clearTimeout(swapT);
+      full.classList.remove('deep');
+      screens.forEach((s) => s.classList.toggle('on', s.dataset.step === String(step)));
+      if (step === 1 && !reduced) swapT = setTimeout(() => screens.forEach((s) => s.classList.toggle('on', s.dataset.step === '1b')), 1800);
+      if (step === 2 && !reduced) swapT = setTimeout(() => full.classList.add('deep'), 700);
+    }
+    const sio = new IntersectionObserver((es) => es.forEach((e) => {
+      if (!e.isIntersecting) return;
+      $$('.step').forEach((s) => s.classList.toggle('on', s === e.target));
+      show(+e.target.dataset.show);
+    }), { rootMargin: '-45% 0px -45% 0px' });
+    $$('.step').forEach((s) => sio.observe(s));
+
+    $('#play').addEventListener('click', () => { const v = $('#film'); v.controls = true; v.play(); $('#play').hidden = true; });
+  </script>
+</body>
+</html>
