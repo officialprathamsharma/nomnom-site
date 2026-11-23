@@ -5,7 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <title>NomNom · Video menus for cafés and restaurants</title>
   <meta name="description" content="NomNom turns your QR menu into a video menu. Guests see every dish in motion before they order. Built for cafés and restaurants in India.">
-  <meta name="theme-color" content="#fbfaf8">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="color-scheme" content="dark">
   <meta property="og:title" content="NomNom · Menus that make people hungry">
   <meta property="og:description" content="Video menus for cafés and restaurants. Guests scan the table QR and see every dish in motion.">
   <meta property="og:image" content="assets/intro-poster.jpg">
@@ -18,10 +19,11 @@
   <style>
     /* ---------- Gallery white, true black chapters, one warm gradient (NomNom orange → chilli) ---------- */
     :root {
-      --bg: #fbfaf8; --bg-2: #f2f0ec; --card: #ffffff; --line: rgba(10, 10, 12, .08);
-      --ink: #0b0b0c; --ink-2: #2a2a2e; --muted: #6e6e73;
-      --night: #000; --night-2: #121214; --night-3: #1c1c1f; --on-night: #f5f5f7; --night-muted: #a1a1a6;
-      --orange: #ff6a00; --orange-ink: #c24d00;
+      /* Dark: charcoal chapters alternate with true black so sections still read apart */
+      --bg: #0b0b0c; --bg-2: #141416; --card: #1a1a1d; --line: rgba(255, 255, 255, .09);
+      --ink: #f5f5f7; --ink-2: #d2d2d7; --muted: #a1a1a6;
+      --night: #000; --night-2: #161618; --night-3: #222225; --on-night: #f5f5f7; --night-muted: #a1a1a6;
+      --orange: #ff6a00; --orange-ink: #ff8a3d;
       --heat: linear-gradient(95deg, #ff8a00 0%, #ff6a00 38%, #ff3d2e 100%);
       --display: 'Inter Tight', ui-sans-serif, -apple-system, 'SF Pro Display', system-ui, sans-serif;
       --sans: 'Inter', ui-sans-serif, -apple-system, 'SF Pro Text', system-ui, sans-serif;
@@ -56,8 +58,8 @@
       transition: transform .3s var(--ease), background-color .2s, box-shadow .3s var(--ease); }
     .btn:hover { transform: translateY(-2px); }
     .btn:active { transform: scale(.97); }
-    .btn-dark { background: var(--ink); color: #fff; }
-    .btn-dark:hover { background: #26262a; box-shadow: 0 12px 30px rgba(0, 0, 0, .16); }
+    .btn-dark { background: #f5f5f7; color: #000; }
+    .btn-dark:hover { background: #fff; box-shadow: 0 12px 30px rgba(255, 255, 255, .12); }
     .btn-heat { background: var(--heat); color: #fff; box-shadow: 0 10px 28px rgba(255, 90, 20, .3); }
     .btn-heat:hover { box-shadow: 0 16px 36px rgba(255, 90, 20, .4); }
     .link { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; font: 600 17px var(--sans); color: var(--orange-ink); text-decoration: none; }
@@ -66,7 +68,7 @@
     .link:hover svg { transform: translateX(4px); }
 
     /* Nav */
-    .bar { position: sticky; top: 0; z-index: 60; background: rgba(251, 250, 248, .78); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; transition: border-color .3s; }
+    .bar { position: sticky; top: 0; z-index: 60; background: rgba(11, 11, 12, .72); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid transparent; transition: border-color .3s; }
     .bar.scrolled { border-color: var(--line); }
     .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 60px; }
     .logo { display: block; width: 70px; aspect-ratio: 640 / 380; background: url(assets/nomnom-logo-t.png) center / contain no-repeat; }
@@ -84,9 +86,9 @@
     .hero .ctas { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 14px 26px; margin-top: 34px; }
     .stage { position: relative; height: clamp(560px, 64vw, 780px); margin-top: clamp(50px, 6vw, 80px); perspective: 1600px; }
     .stage::before { content: ''; position: absolute; left: 50%; top: 14%; width: min(900px, 96vw); height: 74%; transform: translateX(-50%); border-radius: 50%;
-      background: radial-gradient(closest-side, rgba(255, 106, 0, .26), rgba(255, 61, 46, .08) 60%, transparent); filter: blur(20px); }
+      background: radial-gradient(closest-side, rgba(255, 106, 0, .34), rgba(255, 61, 46, .12) 60%, transparent); filter: blur(20px); }
     .device { position: absolute; left: 50%; top: 0; width: clamp(270px, 25vw, 330px); aspect-ratio: 390 / 844; padding: 11px; border-radius: 54px;
-      background: linear-gradient(160deg, #3a3a3e, #0b0b0c 40%, #1b1b1e); box-shadow: 0 0 0 1px rgba(255, 255, 255, .06) inset, 0 60px 120px rgba(40, 20, 0, .28), 0 20px 40px rgba(0, 0, 0, .16);
+      background: linear-gradient(160deg, #4a4a50, #121214 40%, #2a2a2e); box-shadow: 0 0 0 1px rgba(255, 255, 255, .14) inset, 0 60px 120px rgba(40, 20, 0, .28), 0 20px 40px rgba(0, 0, 0, .16);
       transform: translateX(-50%); transform-origin: 50% 30%; will-change: transform; }
     .screen { position: relative; width: 100%; height: 100%; border-radius: 44px; overflow: hidden; background: #fbf6ef; container-type: inline-size; }
     .screen .island { position: absolute; z-index: 9; left: 50%; top: 2.2%; width: 30%; height: 3.6%; border-radius: 30px; background: #000; transform: translateX(-50%); }
@@ -98,8 +100,8 @@
     .live-card .chip { display: inline-block; padding: 1.3cqw 3cqw; border-radius: 99px; background: #e0a96d; color: #1b120a; font: 600 3.3cqw/1.2 var(--sans); }
     .live-card b { display: block; margin-top: 2cqw; font: 700 5.6cqw/1.1 var(--display); letter-spacing: -.02em; }
     .live-card small { display: block; margin-top: 1.4cqw; font: 600 4.2cqw var(--sans); }
-    .pill { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 999px; background: rgba(255, 255, 255, .86);
-      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(40, 20, 0, .12); font: 600 14.5px var(--sans); white-space: nowrap; will-change: transform; }
+    .pill { position: absolute; z-index: 3; display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 999px; background: rgba(34, 34, 37, .82); color: var(--ink); border: 1px solid var(--line);
+      backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); box-shadow: 0 16px 40px rgba(0, 0, 0, .4); font: 600 14.5px var(--sans); white-space: nowrap; will-change: transform; }
     .pill .dot { width: 26px; height: 26px; border-radius: 50%; display: grid; place-items: center; background: var(--heat); color: #fff; }
     .pill .dot svg { width: 14px; height: 14px; }
     .p1 { left: 8%; top: 20%; } .p2 { right: 7%; top: 34%; } .p3 { left: 13%; top: 62%; } .p4 { right: 11%; top: 72%; }
@@ -154,7 +156,7 @@
     .step p { color: var(--muted); font-size: 19px; max-width: 34ch; }
     @media (max-width: 860px) {
       .journey .grid { display: block; }
-      .journey .sticky { position: sticky; top: 60px; z-index: 2; height: auto; padding: 12px 0 16px; background: linear-gradient(var(--bg) 85%, rgba(251, 250, 248, 0)); }
+      .journey .sticky { position: sticky; top: 60px; z-index: 2; height: auto; padding: 12px 0 16px; background: linear-gradient(var(--bg) 85%, rgba(11, 11, 12, 0)); }
       .journey .device { width: 150px; }
       .step, .step:first-child { min-height: 56vh; }
     }
@@ -164,13 +166,13 @@
     .owners .head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: end; }
     .owners h2 { font-size: clamp(46px, 6.6vw, 92px); line-height: .95; letter-spacing: -.05em; }
     .bento { margin-top: 64px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 16px; }
-    .tile { position: relative; overflow: hidden; border-radius: var(--r); background: var(--card); padding: 30px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 1px 2px rgba(0, 0, 0, .04); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
-    .tile:hover { transform: translateY(-2px); box-shadow: 0 24px 60px rgba(40, 20, 0, .08); }
+    .tile { position: relative; overflow: hidden; border-radius: var(--r); background: var(--card); padding: 30px; display: flex; flex-direction: column; gap: 10px; border: 1px solid var(--line); transition: transform .4s var(--ease), box-shadow .4s var(--ease); }
+    .tile:hover { transform: translateY(-2px); box-shadow: 0 24px 60px rgba(0, 0, 0, .5); border-color: rgba(255, 138, 61, .3); }
     .tile h3 { font-size: 26px; }
     .tile p { color: var(--muted); font-size: 16px; }
     .tile .demo { margin-top: auto; padding-top: 22px; }
     .t4 { grid-column: span 4; } .t2 { grid-column: span 2; } .t3 { grid-column: span 3; }
-    .tile.dark { background: var(--night-2); color: var(--on-night); }
+    .tile.dark { background: linear-gradient(160deg, #241812, #121214 55%); color: var(--on-night); }
     .tile.dark p { color: var(--night-muted); }
     /* live orders */
     .orders { display: grid; gap: 10px; }
@@ -191,12 +193,12 @@
     .dishrow .nm b { display: block; font: 700 16px var(--display); letter-spacing: -.01em; }
     .dishrow .nm span { font-size: 14px; color: var(--muted); }
     .dishrow.out img { filter: grayscale(1) opacity(.6); }
-    .dishrow.out .nm span { color: #c2261b; font-weight: 600; }
+    .dishrow.out .nm span { color: #ff6b5e; font-weight: 600; }
     .switch { position: relative; width: 52px; height: 32px; flex: none; }
     .switch input { position: absolute; inset: 0; opacity: 0; cursor: pointer; margin: 0; }
     .switch i { position: absolute; inset: 0; border-radius: 99px; background: #34c759; transition: background .25s; pointer-events: none; }
     .switch i::after { content: ''; position: absolute; top: 3px; left: 23px; width: 26px; height: 26px; border-radius: 50%; background: #fff; box-shadow: 0 2px 6px rgba(0, 0, 0, .2); transition: left .3s var(--ease); }
-    .switch input:not(:checked) + i { background: #d1d1d6; }
+    .switch input:not(:checked) + i { background: #48484a; }
     .switch input:not(:checked) + i::after { left: 3px; }
     .switch input:focus-visible + i { outline: 3px solid var(--orange); outline-offset: 3px; }
     /* price editor */
@@ -204,20 +206,20 @@
     .price-edit label { display: grid; gap: 6px; font-size: 13px; font-weight: 600; color: var(--muted); }
     .price-edit input { width: 100%; height: 52px; padding: 0 14px; border-radius: 14px; border: 1.5px solid var(--line); background: var(--bg); font: 700 22px var(--display); color: var(--ink); }
     .price-edit input:focus { outline: none; border-color: var(--orange); box-shadow: 0 0 0 4px rgba(255, 106, 0, .15); }
-    .guest-card { border-radius: 14px; background: var(--ink); color: #fff; padding: 12px 14px; display: grid; align-content: end; gap: 2px; position: relative; overflow: hidden; }
+    .guest-card { border-radius: 14px; background: #000; border: 1px solid var(--line); color: #fff; padding: 12px 14px; display: grid; align-content: end; gap: 2px; position: relative; overflow: hidden; }
     .guest-card small { font-size: 11px; letter-spacing: .08em; text-transform: uppercase; color: #a1a1a6; }
     .guest-card b { font: 700 16px var(--display); }
     .guest-card .pr { font: 700 20px var(--display); transition: color .3s; }
     .guest-card .pr.flash { color: #ff8a3d; }
     /* insights bars */
     .bars { display: flex; align-items: flex-end; gap: 8px; height: 110px; }
-    .bars i { flex: 1; border-radius: 8px 8px 3px 3px; background: #e9e6e0; transform-origin: bottom; animation: grow 1.2s var(--ease) both; }
+    .bars i { flex: 1; border-radius: 8px 8px 3px 3px; background: rgba(255, 255, 255, .12); transform-origin: bottom; animation: grow 1.2s var(--ease) both; }
     .bars i.hi { background: var(--heat); }
     @keyframes grow { from { transform: scaleY(.1); } }
     .bars + .legend { display: flex; justify-content: space-between; font-size: 12px; color: var(--muted); margin-top: 8px; }
     /* QR sheet */
     .qrs { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
-    .qrs div { aspect-ratio: .82; border-radius: 12px; background: var(--bg); display: grid; justify-items: center; align-content: center; gap: 6px; padding: 10px; font: 700 12px var(--display); }
+    .qrs div { aspect-ratio: .82; border-radius: 12px; background: #fff; color: #000; display: grid; justify-items: center; align-content: center; gap: 6px; padding: 10px; font: 700 12px var(--display); }
     .qrs svg { width: 72%; height: auto; }
     @media (max-width: 960px) { .owners .head { grid-template-columns: 1fr; } .bento { grid-template-columns: 1fr 1fr; } .t4, .t3 { grid-column: span 2; } .t2 { grid-column: span 1; } }
     @media (max-width: 620px) { .bento { grid-template-columns: 1fr; } .t4, .t3, .t2 { grid-column: auto; } }
@@ -239,7 +241,7 @@
     .pilot { padding: clamp(96px, 11vw, 150px) 0; text-align: center; }
     .pilot .lede { margin: 22px auto 0; max-width: 40ch; }
     .offer { margin: 56px auto 0; max-width: 980px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; text-align: left; }
-    .offer div { padding: 24px; border-radius: 22px; background: var(--card); box-shadow: 0 1px 2px rgba(0, 0, 0, .04); }
+    .offer div { padding: 24px; border-radius: 22px; background: var(--card); border: 1px solid var(--line); }
     .offer b { display: block; font: 700 20px/1.2 var(--display); letter-spacing: -.02em; }
     .offer span { display: block; margin-top: 6px; color: var(--muted); font-size: 15px; }
     .pilot .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 40px; }
@@ -416,10 +418,10 @@
             <h3 id="o6">Your menu, imported.</h3>
             <p>Bring your dishes in from an Excel sheet, a CSV file or your Zomato listing, then add photos and clips.</p>
             <div class="demo" style="display:flex; gap:10px; flex-wrap:wrap">
-              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Excel</span>
-              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">CSV</span>
-              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Zomato link</span>
-              <span class="pill" style="position:static; box-shadow:none; background: var(--bg)">Google reviews &amp; Instagram</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg-2)">Excel</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg-2)">CSV</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg-2)">Zomato link</span>
+              <span class="pill" style="position:static; box-shadow:none; background: var(--bg-2)">Google reviews &amp; Instagram</span>
             </div>
           </article>
         </div>
