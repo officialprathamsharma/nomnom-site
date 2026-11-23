@@ -438,7 +438,7 @@
           <div class="ctas"><a class="link" href="https://menu.heynomnom.in/?r=demo&amp;t=1" target="_blank" rel="noopener">Open the demo menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="film-frame">
-          <video id="film" src="assets/nomnom-intro.mp4" poster="assets/intro-poster.jpg" playsinline preload="none" aria-label="NomNom intro video"></video>
+          <video id="film-video" src="assets/nomnom-intro.mp4" poster="assets/intro-poster.jpg" playsinline preload="none" aria-label="NomNom intro video"></video>
           <button class="play" id="play" type="button" aria-label="Play the NomNom intro video"><span><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M7 4v16l13-8z"/></svg></span></button>
         </div>
       </div>
@@ -509,7 +509,7 @@
       if (e.isIntersecting) { if (!v.getAttribute('src') && v.dataset.src) v.src = v.dataset.src; if (!reduced) v.play().catch(() => {}); }
       else v.pause();
     }), { threshold: 0.15 });
-    $$('video[muted], .live-card video, .zoom video, .live-sheet video').forEach((v) => { if (v.id !== 'film') vio.observe(v); });
+    $$('video[muted], .live-card video, .zoom video, .live-sheet video').forEach((v) => { if (v.id !== 'film-video') vio.observe(v); });
 
     // Problem sentence: words light up through the section
     const text = $('#reveal-text');
@@ -605,7 +605,7 @@
       const out = $('#guest-price'); out.textContent = v; out.classList.add('flash'); setTimeout(() => out.classList.remove('flash'), 400);
     });
 
-    $('#play').addEventListener('click', () => { const v = $('#film'); v.controls = true; v.play(); $('#play').hidden = true; });
+    $('#play').addEventListener('click', () => { const v = $('#film-video'); v.controls = true; v.play(); $('#play').hidden = true; });
   </script>
 </body>
 </html>
