@@ -489,7 +489,7 @@
     const MENU = 'https://menu.heynomnom.in/';
 
     // Contact details live in one place.
-    const CONTACT = { whatsapp: '', email: '' };
+    const CONTACT = { whatsapp: '', email: 'contact@heynomnom.in' };
     if (CONTACT.whatsapp) { const a = $('#cta-whatsapp'); a.href = `https://wa.me/${CONTACT.whatsapp}?text=${encodeURIComponent('Hi NomNom, I’d like a demo for my café.')}`; a.hidden = false; }
     if (CONTACT.email) { const a = $('#cta-email'); a.href = `mailto:${CONTACT.email}?subject=${encodeURIComponent('NomNom demo')}`; a.hidden = false; }
     if (CONTACT.whatsapp || CONTACT.email) $('#cta-soon').hidden = true;
