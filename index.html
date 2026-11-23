@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>NomNom · Video menus for cafés and restaurants</title>
-  <meta name="description" content="NomNom turns your QR menu into a video menu. Guests see every dish in motion before they order. Built for cafés and restaurants in India.">
+  <title>NomNom · The video menu experience for modern restaurants</title>
+  <meta name="description" content="The video menu experience for modern restaurants. Guests scan the table QR and see every dish in motion before they order. Make them see it. Make them crave it.">
   <meta name="theme-color" content="#0b0b0c">
   <meta name="color-scheme" content="dark">
   <meta property="og:title" content="NomNom · Menus that make people hungry">
-  <meta property="og:description" content="Video menus for cafés and restaurants. Guests scan the table QR and see every dish in motion.">
+  <meta property="og:description" content="The video menu experience for modern restaurants. Guests scan the table QR and see every dish in motion.">
   <meta property="og:image" content="assets/intro-poster.jpg">
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
@@ -161,6 +161,29 @@
       .step, .step:first-child { min-height: 56vh; }
     }
 
+    /* ---------- Why video: the Instagram question + what changes ---------- */
+    .why { padding: clamp(96px, 11vw, 150px) 0; }
+    .why .head { max-width: 900px; }
+    .why .head .lede { margin-top: 24px; max-width: 44ch; }
+    .why-grid { margin-top: clamp(48px, 6vw, 72px); display: grid; grid-template-columns: .9fr 1.1fr; gap: 16px; align-items: stretch; }
+    .tempt { position: relative; overflow: hidden; border-radius: var(--r); padding: clamp(28px, 3.4vw, 44px); background: linear-gradient(160deg, #2a170c, #120c08 60%, #0b0b0c); border: 1px solid rgba(255, 138, 61, .22); display: flex; flex-direction: column; justify-content: space-between; gap: 28px; }
+    .tempt p { font: 700 clamp(26px, 2.6vw, 36px)/1.12 var(--display); letter-spacing: -.03em; }
+    .tempt p span { color: var(--night-muted); }
+    .tempt small { font-size: 15px; color: var(--night-muted); }
+    .compare { border-radius: var(--r); background: var(--night-2); border: 1px solid var(--line); padding: clamp(24px, 3vw, 36px); }
+    .compare h3 { font-size: clamp(22px, 2.1vw, 28px); }
+    .compare h3 span { color: var(--night-muted); }
+    .compare table { width: 100%; margin-top: 22px; border-collapse: collapse; font-size: 16px; }
+    .compare th { text-align: left; font: 600 13px var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--night-muted); padding: 0 12px 12px 0; }
+    .compare td { padding: 15px 12px 15px 0; border-top: 1px solid var(--line); vertical-align: top; }
+    .compare td:first-child { color: var(--night-muted); width: 42%; }
+    .compare td:last-child { font-weight: 600; }
+    .compare td:last-child::before { content: '→ '; color: var(--orange-ink); }
+    @media (max-width: 900px) { .why-grid { grid-template-columns: 1fr; } }
+    @media (max-width: 520px) { .compare table, .compare tbody, .compare tr, .compare td { display: block; width: auto !important; } .compare thead { display: none; } .compare td { border: 0; padding: 0; } .compare tr { padding: 14px 0; border-top: 1px solid var(--line); } .compare td:first-child { font-size: 14px; margin-bottom: 4px; } }
+    .signoff span { display: inline-block; }
+    .signoff { margin-top: 56px; font: 700 clamp(30px, 3.6vw, 48px)/1.05 var(--display); letter-spacing: -.04em; }
+
     /* ---------- Owners: bento of working mini-tools ---------- */
     .owners { background: var(--bg-2); padding: clamp(96px, 11vw, 150px) 0; }
     .owners .head { display: grid; grid-template-columns: 1.15fr .85fr; gap: 40px; align-items: end; }
@@ -279,6 +302,7 @@
     <div class="wrap">
       <a class="logo" href="#top" aria-label="NomNom home"></a>
       <nav aria-label="Main"><ul>
+        <li><a href="#why">Why video</a></li>
         <li><a href="#journey">For guests</a></li>
         <li><a href="#owners">For owners</a></li>
         <li><a href="#film">Watch</a></li>
@@ -369,6 +393,36 @@
       </div>
     </section>
 
+    <!-- WHY VIDEO -->
+    <section class="night why" id="why" aria-labelledby="why-title">
+      <div class="wrap">
+        <div class="head">
+          <p class="eyebrow">Why video</p>
+          <h2 id="why-title" style="margin-top: 14px">Your Instagram makes people hungry. Why shouldn’t <span class="heat">your menu?</span></h2>
+          <p class="lede">You make food videos to bring people through the door. But the guests already sitting at your tables, deciding what to order, only get a name and a price. NomNom shows them your food at the moment they choose.</p>
+        </div>
+        <div class="why-grid">
+          <figure class="tempt">
+            <p>A photo shows your brownie. <span>A video shows it cut open, warm chocolate running out.</span> Which one sells dessert?</p>
+            <small>Signature dishes, chef’s specials and desserts get noticed, not skipped.</small>
+          </figure>
+          <div class="compare">
+            <h3>A QR menu puts your menu on a phone. <span>NomNom makes guests want to order from it.</span></h3>
+            <table>
+              <thead><tr><th scope="col">Usual today</th><th scope="col">With NomNom</th></tr></thead>
+              <tbody>
+                <tr><td>Food videos only on Instagram</td><td>The same videos on the menu at the table</td></tr>
+                <tr><td>Text descriptions</td><td>See the texture, the size and how it’s served</td></tr>
+                <tr><td>Best dishes buried in the list</td><td>Signature dishes and specials up front</td></tr>
+                <tr><td>Staff reminding guests about dessert</td><td>Desserts that make the case on screen</td></tr>
+                <tr><td>Guests ordering the usual</td><td>An easy way to try something new</td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <!-- OWNERS -->
     <section class="owners" id="owners" aria-labelledby="owners-title">
       <div class="wrap">
@@ -405,7 +459,7 @@
             </div>
           </article>
           <article class="tile t3" aria-labelledby="o4">
-            <h3 id="o4">See what guests explore.</h3>
+            <h3 id="o4">See what sells.</h3>
             <p>Orders by day, week and month, and which video dishes sell best.</p>
             <div class="demo"><div class="bars" aria-hidden="true"><i style="height:40%"></i><i style="height:58%"></i><i style="height:46%"></i><i style="height:70%"></i><i style="height:64%"></i><i class="hi" style="height:96%"></i><i style="height:80%"></i></div><div class="legend" aria-hidden="true"><span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span></div></div>
           </article>
@@ -449,13 +503,14 @@
       <div class="wrap">
         <p class="eyebrow">Start with a pilot</p>
         <h2 id="pilot-title" style="margin-top: 14px">Try NomNom at your café <span class="heat">for 30 days.</span></h2>
-        <p class="lede">We set it up, you watch how guests use it, then you decide.</p>
+        <p class="lede">You spend money and effort getting guests through the door. NomNom makes the most of the moment they choose what to order. We set it up, you watch how guests use it, then you decide.</p>
         <div class="offer">
           <div><b>Menu set up for you</b><span>From Excel, Zomato or photos</span></div>
           <div><b>10–20 dish clips</b><span>Your signature dishes first</span></div>
           <div><b>QR for every table</b><span>Print-ready, numbered</span></div>
           <div><b>Owner dashboard</b><span>Orders and insights</span></div>
         </div>
+        <p class="signoff"><span>Make them see it.</span> <span class="heat">Make them crave it.</span></p>
         <div class="ctas">
           <a class="btn btn-heat" id="cta-whatsapp" href="#" hidden>Message us on WhatsApp</a>
           <a class="btn btn-dark" id="cta-email" href="#" hidden>Email us</a>
@@ -477,7 +532,7 @@
     <div class="wrap">
       <a class="logo" href="#top" aria-label="NomNom home"></a>
       <nav aria-label="Footer"><a href="#journey">For guests</a><a href="#owners">For owners</a><a href="#pilot">Pilot</a><a href="https://menu.heynomnom.in/admin/">Owner sign-in</a></nav>
-      <span>© <span id="year">2026</span> NomNom</span>
+      <span>© <span id="year">2026</span> NomNom · Make them see it. Make them crave it.</span>
     </div>
   </footer>
 
