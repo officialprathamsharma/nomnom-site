@@ -321,7 +321,7 @@
         <p class="lede rise d2">Guests scan the QR on their table and see every dish in motion. They notice your best dishes, and you change the menu in seconds.</p>
         <div class="ctas rise d3">
           <a class="btn btn-dark" href="#pilot">Book a demo</a>
-          <a class="link" href="https://menu.heynomnom.in/?r=demo&amp;t=1" target="_blank" rel="noopener">Open a live menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
+          <a class="link" href="https://menu.heynomnom.in/?r=pink-apron" target="_blank" rel="noopener">Open a live menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a>
         </div>
       </div>
       <div class="stage rise d4" id="stage">
@@ -489,7 +489,7 @@
           <p class="eyebrow">Watch</p>
           <h2 id="film-title" style="margin-top: 14px">NomNom in <span class="heat">one minute.</span></h2>
           <p class="lede">Why text menus hold your dishes back, and what your guests see when they scan a NomNom QR.</p>
-          <div class="ctas"><a class="link" href="https://menu.heynomnom.in/?r=demo&amp;t=1" target="_blank" rel="noopener">Open the demo menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></div>
+          <div class="ctas"><a class="link" href="https://menu.heynomnom.in/?r=pink-apron" target="_blank" rel="noopener">Open the demo menu <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 6l6 6-6 6"/></svg></a></div>
         </div>
         <div class="film-frame">
           <video id="film-video" src="assets/nomnom-intro.mp4" poster="assets/intro-poster.jpg" playsinline preload="none" aria-label="NomNom intro video"></video>
@@ -555,8 +555,8 @@
 
     // QR codes (journey phone + the per-table sheet)
     const qrSvg = (url, cell = 3) => { try { const q = qrcode(0, 'M'); q.addData(url); q.make(); return q.createSvgTag({ cellSize: cell, margin: 0, scalable: true }); } catch { return ''; } };
-    $('#qr').insertAdjacentHTML('afterbegin', qrSvg(MENU + '?r=demo&t=4', 4));
-    $('#qrs').innerHTML = ['1', '2', '3', '4', '5', 'Patio 1'].map((t) => `<div>${qrSvg(`${MENU}?r=demo&t=${encodeURIComponent(t)}`)}Table ${t}</div>`).join('');
+    $('#qr').insertAdjacentHTML('afterbegin', qrSvg(MENU + '?r=pink-apron&t=4', 4));
+    $('#qrs').innerHTML = ['1', '2', '3', '4', '5', 'Patio 1'].map((t) => `<div>${qrSvg(`${MENU}?r=pink-apron&t=${encodeURIComponent(t)}`)}Table ${t}</div>`).join('');
 
     // Videos play only on screen
     const vio = new IntersectionObserver((es) => es.forEach((e) => {
