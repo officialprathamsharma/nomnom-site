@@ -7,9 +7,65 @@
   <meta name="description" content="The video menu experience for modern restaurants. Guests scan the table QR and see every dish in motion before they order. Make them see it. Make them crave it.">
   <meta name="theme-color" content="#0b0b0c">
   <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://heynomnom.in/">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="NomNom">
+  <meta property="og:url" content="https://heynomnom.in/">
   <meta property="og:title" content="NomNom · Menus that make people hungry">
   <meta property="og:description" content="The video menu experience for modern restaurants. Guests scan the table QR and see every dish in motion.">
-  <meta property="og:image" content="assets/intro-poster.jpg">
+  <meta property="og:image" content="https://heynomnom.in/assets/intro-poster.jpg">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Search engines: who NomNom is, what it is, and the FAQ below. Keep the FAQ answers here identical to the
+       visible FAQ on the page (Google ignores structured data that doesn't match what visitors can see). -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://heynomnom.in/#org",
+        "name": "NomNom",
+        "url": "https://heynomnom.in/",
+        "logo": "https://heynomnom.in/assets/nomnom-512.png",
+        "email": "contact@heynomnom.in",
+        "slogan": "Make them see it. Make them crave it.",
+        "areaServed": "IN"
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://heynomnom.in/#site",
+        "url": "https://heynomnom.in/",
+        "name": "NomNom",
+        "publisher": { "@id": "https://heynomnom.in/#org" },
+        "inLanguage": "en-IN"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "NomNom video menu",
+        "applicationCategory": "BusinessApplication",
+        "operatingSystem": "Web, Android, iOS",
+        "description": "A QR code video menu for restaurants and cafés: guests scan the table QR and see every dish in motion before they order, with optional table ordering and an owner dashboard.",
+        "url": "https://heynomnom.in/",
+        "image": "https://heynomnom.in/assets/intro-poster.jpg",
+        "publisher": { "@id": "https://heynomnom.in/#org" }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "What is a video menu?", "acceptedAnswer": { "@type": "Answer", "text": "A video menu is a digital restaurant menu where dishes are shown as short clips instead of only text and photos. With NomNom, guests scan the QR code on their table and see each dish in motion before they order." } },
+          { "@type": "Question", "name": "How is NomNom different from a normal QR menu?", "acceptedAnswer": { "@type": "Answer", "text": "A normal QR menu usually opens a PDF or a list of dish names. NomNom shows short videos of your dishes, lets guests search and filter (veg, non-veg, drinks), highlights your best sellers, and can take table orders. A QR menu puts your menu on a phone. NomNom makes guests want to order from it." } },
+          { "@type": "Question", "name": "Do guests need to download an app?", "acceptedAnswer": { "@type": "Answer", "text": "No. Guests scan the QR with their phone camera and the menu opens in the browser, on Android and iPhone." } },
+          { "@type": "Question", "name": "We don’t have videos of our dishes. Is that a problem?", "acceptedAnswer": { "@type": "Answer", "text": "Start with photos. Short clips shot on a phone work well, and NomNom resizes them so they load quickly. Begin with your 10–20 signature dishes and add more over time." } },
+          { "@type": "Question", "name": "Can we print a QR code for each table?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. Enter your table numbers (for example “1-12” or “1-8, Patio 1, Patio 2”) and the dashboard makes a print-ready sheet. Each code opens the menu with that table number, so table orders arrive labelled." } },
+          { "@type": "Question", "name": "Can we move our menu from Zomato or another QR menu?", "acceptedAnswer": { "@type": "Answer", "text": "Yes. NomNom can import your menu from an Excel or CSV file, a Zomato page or an AirMenus menu, including dish photos, so you don’t have to type it again." } },
+          { "@type": "Question", "name": "Does it work with our POS?", "acceptedAnswer": { "@type": "Answer", "text": "Table orders arrive in the NomNom dashboard with the table number, and can be printed as a kitchen ticket or exported. Direct POS sync is on our roadmap." } },
+          { "@type": "Question", "name": "Is table ordering required?", "acceptedAnswer": { "@type": "Answer", "text": "No. Switch ordering off and NomNom works as a view-only video menu." } }
+        ]
+      }
+    ]
+  }
+  </script>
   <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
   <link rel="apple-touch-icon" href="assets/nomnom-512.png">
@@ -518,9 +574,13 @@
         <p class="soon" id="cta-soon">Contact details coming soon.</p>
         <div class="faq">
           <h3>Questions</h3>
+          <!-- Keep these in sync with the FAQPage structured data in <head>. -->
+          <details><summary>What is a video menu?<i aria-hidden="true">+</i></summary><p>A video menu is a digital restaurant menu where dishes are shown as short clips instead of only text and photos. With NomNom, guests scan the QR code on their table and see each dish in motion before they order.</p></details>
+          <details><summary>How is NomNom different from a normal QR menu?<i aria-hidden="true">+</i></summary><p>A normal QR menu usually opens a PDF or a list of dish names. NomNom shows short videos of your dishes, lets guests search and filter (veg, non-veg, drinks), highlights your best sellers, and can take table orders. A QR menu puts your menu on a phone. NomNom makes guests want to order from it.</p></details>
           <details><summary>Do guests need to download an app?<i aria-hidden="true">+</i></summary><p>No. Guests scan the QR with their phone camera and the menu opens in the browser, on Android and iPhone.</p></details>
           <details><summary>We don’t have videos of our dishes. Is that a problem?<i aria-hidden="true">+</i></summary><p>Start with photos. Short clips shot on a phone work well, and NomNom resizes them so they load quickly. Begin with your 10–20 signature dishes and add more over time.</p></details>
           <details><summary>Can we print a QR code for each table?<i aria-hidden="true">+</i></summary><p>Yes. Enter your table numbers (for example “1-12” or “1-8, Patio 1, Patio 2”) and the dashboard makes a print-ready sheet. Each code opens the menu with that table number, so table orders arrive labelled.</p></details>
+          <details><summary>Can we move our menu from Zomato or another QR menu?<i aria-hidden="true">+</i></summary><p>Yes. NomNom can import your menu from an Excel or CSV file, a Zomato page or an AirMenus menu, including dish photos, so you don’t have to type it again.</p></details>
           <details><summary>Does it work with our POS?<i aria-hidden="true">+</i></summary><p>Table orders arrive in the NomNom dashboard with the table number, and can be printed as a kitchen ticket or exported. Direct POS sync is on our roadmap.</p></details>
           <details><summary>Is table ordering required?<i aria-hidden="true">+</i></summary><p>No. Switch ordering off and NomNom works as a view-only video menu.</p></details>
         </div>
