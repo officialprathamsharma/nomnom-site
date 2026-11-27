@@ -1,0 +1,277 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>What is a video menu? A guide for restaurants · NomNom</title>
+  <meta name="description" content="A video menu shows every dish as a short clip when guests scan the table QR. How it differs from a PDF or photo QR menu, what to film, and how to set one up.">
+  <meta name="theme-color" content="#0b0b0c">
+  <meta name="color-scheme" content="dark">
+  <link rel="canonical" href="https://heynomnom.in/video-menu/">
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="NomNom">
+  <meta property="og:url" content="https://heynomnom.in/video-menu/">
+  <meta property="og:title" content="What is a video menu? A guide for restaurants">
+  <meta property="og:description" content="Every dish as a short clip when guests scan the table QR. What it is, what to film, and how to set one up.">
+  <meta property="og:image" content="https://heynomnom.in/assets/intro-poster.jpg">
+  <meta property="og:locale" content="en_IN">
+  <meta name="twitter:card" content="summary_large_image">
+  <!-- Keep the FAQ answers here word for word the same as the visible FAQ below. -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        "@id": "https://heynomnom.in/video-menu/#article",
+        "headline": "What is a video menu? A guide for restaurants",
+        "description": "A video menu shows every dish as a short clip when guests scan the table QR. How it differs from a PDF or photo QR menu, what to film, and how to set one up.",
+        "image": "https://heynomnom.in/assets/intro-poster.jpg",
+        "datePublished": "2026-11-27",
+        "dateModified": "2026-11-27",
+        "inLanguage": "en-IN",
+        "mainEntityOfPage": "https://heynomnom.in/video-menu/",
+        "author": { "@type": "Organization", "name": "NomNom", "url": "https://heynomnom.in/" },
+        "publisher": { "@type": "Organization", "name": "NomNom", "logo": { "@type": "ImageObject", "url": "https://heynomnom.in/assets/nomnom-512.png" } }
+      },
+      {
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          { "@type": "ListItem", "position": 1, "name": "NomNom", "item": "https://heynomnom.in/" },
+          { "@type": "ListItem", "position": 2, "name": "Video menu", "item": "https://heynomnom.in/video-menu/" }
+        ]
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          { "@type": "Question", "name": "Is a video menu the same as a QR code menu?", "acceptedAnswer": { "@type": "Answer", "text": "A video menu is a kind of QR code menu. Guests still scan a QR code on the table, but instead of a PDF or a plain list, each dish is shown as a short muted clip with its price, description and veg or non-veg mark." } },
+          { "@type": "Question", "name": "Do guests need an app or good internet?", "acceptedAnswer": { "@type": "Answer", "text": "No app is needed: the menu opens in the phone’s browser. Clips are small (a few seconds, compressed for phones), and on a slow connection guests see the dish photo first while the clip loads." } },
+          { "@type": "Question", "name": "How many dishes need a video?", "acceptedAnswer": { "@type": "Answer", "text": "Not all of them. Start with 10–20 dishes: your best sellers, your most photogenic dishes and the ones you most want guests to order. Everything else can stay as a photo and be filmed later." } },
+          { "@type": "Question", "name": "Can we use the reels we already post on Instagram?", "acceptedAnswer": { "@type": "Answer", "text": "Yes, if they show one dish clearly. Trim each reel to the 3–8 seconds where the dish is the star, with no text overlays, and it works as a menu clip." } },
+          { "@type": "Question", "name": "What does a video menu cost?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on the provider. NomNom starts with a 30-day pilot where we set up your menu, clips and table QR codes, so you can see how guests use it before deciding." } }
+        ]
+      }
+    ]
+  }
+  </script>
+  <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+  <link rel="apple-touch-icon" href="/assets/nomnom-512.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500..800&family=Inter:wght@400..600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b0b0c; --bg-2: #141416; --card: #1a1a1d; --line: rgba(255, 255, 255, .09);
+      --ink: #f5f5f7; --ink-2: #d2d2d7; --muted: #a1a1a6;
+      --orange: #ff6a00; --orange-ink: #ff8a3d;
+      --heat: linear-gradient(95deg, #ff8a00 0%, #ff6a00 38%, #ff3d2e 100%);
+      --display: 'Inter Tight', ui-sans-serif, -apple-system, 'SF Pro Display', system-ui, sans-serif;
+      --sans: 'Inter', ui-sans-serif, -apple-system, 'SF Pro Text', system-ui, sans-serif;
+      --wrap: 1180px; --text: 720px; --gutter: clamp(20px, 5vw, 64px); --r: 28px;
+      --ease: cubic-bezier(.16, 1, .3, 1);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { background: var(--bg); -webkit-text-size-adjust: 100%; }
+    body { font: 400 18px/1.65 var(--sans); color: var(--ink); background: var(--bg); -webkit-font-smoothing: antialiased; letter-spacing: -.005em; }
+    img, video { display: block; max-width: 100%; height: auto; }
+    a { color: inherit; }
+    .wrap { max-width: var(--wrap); margin: 0 auto; padding: 0 var(--gutter); }
+    .skip { position: absolute; left: -999px; top: 10px; z-index: 99; background: var(--ink); color: #000; padding: 12px 18px; border-radius: 12px; }
+    .skip:focus { left: 10px; }
+    :focus-visible { outline: 3px solid var(--orange); outline-offset: 3px; border-radius: 10px; }
+    h1, h2, h3 { font-family: var(--display); font-weight: 700; letter-spacing: -.035em; text-wrap: balance; }
+    .heat { background: var(--heat); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    .eyebrow { font: 600 15px/1.2 var(--display); color: var(--orange-ink); }
+
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 8px; min-height: 50px; padding: 0 24px; border-radius: 999px; font: 600 16px var(--sans); text-decoration: none; transition: transform .3s var(--ease); }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-dark { background: #f5f5f7; color: #000; }
+    .btn-heat { background: var(--heat); color: #fff; box-shadow: 0 10px 28px rgba(255, 90, 20, .3); }
+
+    .bar { position: sticky; top: 0; z-index: 60; background: rgba(11, 11, 12, .78); backdrop-filter: saturate(180%) blur(20px); -webkit-backdrop-filter: saturate(180%) blur(20px); border-bottom: 1px solid var(--line); }
+    .bar .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; height: 60px; }
+    .logo { display: block; width: 70px; aspect-ratio: 640 / 380; background: url(/assets/nomnom-logo-t.png) center / contain no-repeat; }
+    .bar .btn { min-height: 40px; padding: 0 18px; font-size: 14px; }
+
+    .crumbs { font-size: 14px; color: var(--muted); margin-top: 28px; }
+    .crumbs a { text-decoration: none; }
+    .crumbs a:hover { color: var(--ink); }
+    .intro { display: grid; grid-template-columns: 1.25fr .75fr; gap: clamp(32px, 6vw, 80px); align-items: center; padding: clamp(28px, 5vw, 64px) 0 clamp(48px, 7vw, 90px); }
+    .intro h1 { font-size: clamp(42px, 6.4vw, 84px); line-height: 1; letter-spacing: -.045em; margin-top: 14px; }
+    .intro .lede { margin-top: 22px; font-size: clamp(19px, 1.7vw, 22px); line-height: 1.5; color: var(--muted); max-width: 40ch; }
+    .intro .ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
+    .clip { position: relative; aspect-ratio: 9 / 16; max-width: 320px; width: 100%; justify-self: center; border-radius: 34px; overflow: hidden; background: #111; box-shadow: 0 40px 100px rgba(0, 0, 0, .5); border: 1px solid var(--line); }
+    .clip video { width: 100%; height: 100%; object-fit: cover; }
+    .clip figcaption { position: absolute; left: 14px; right: 14px; bottom: 14px; padding: 10px 14px; border-radius: 16px; background: rgba(0, 0, 0, .55); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); font-size: 14px; line-height: 1.35; }
+    .clip figcaption b { display: block; font: 700 17px var(--display); }
+    @media (max-width: 820px) { .intro { grid-template-columns: 1fr; } .clip { max-width: 260px; } }
+
+    article { max-width: var(--text); margin: 0 auto; padding-bottom: 40px; }
+    article h2 { font-size: clamp(30px, 3.6vw, 44px); line-height: 1.05; margin: 64px 0 18px; }
+    article h3 { font-size: 22px; margin: 32px 0 10px; letter-spacing: -.02em; }
+    article p, article li { color: var(--ink-2); }
+    article p + p { margin-top: 16px; }
+    article ul, article ol { margin: 16px 0 0 22px; display: grid; gap: 10px; }
+    article li::marker { color: var(--orange-ink); }
+    article strong { color: var(--ink); }
+    article a { color: var(--orange-ink); }
+    .compare { margin-top: 24px; border-radius: 22px; overflow: hidden; border: 1px solid var(--line); }
+    .compare table { width: 100%; border-collapse: collapse; font-size: 15.5px; line-height: 1.45; }
+    .compare th, .compare td { text-align: left; padding: 14px 16px; vertical-align: top; border-top: 1px solid var(--line); }
+    .compare thead th { border-top: 0; background: var(--bg-2); font: 600 13px var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); }
+    .compare tbody th { font-weight: 600; color: var(--ink); width: 26%; }
+    .compare td { color: var(--muted); }
+    .compare td.us { color: var(--ink); background: rgba(255, 106, 0, .06); }
+    @media (max-width: 640px) {
+      .compare thead { display: none; }
+      .compare table, .compare tbody, .compare tr, .compare th, .compare td { display: block; width: auto !important; }
+      .compare tr { border-top: 1px solid var(--line); padding: 14px 16px; }
+      .compare tr:first-child { border-top: 0; }
+      .compare tbody th, .compare td { border: 0; padding: 0; }
+      .compare tbody th { margin-bottom: 8px; }
+      .compare td { padding: 6px 0 6px 0; }
+      .compare td::before { content: attr(data-label); display: block; font: 600 12px var(--sans); letter-spacing: .04em; text-transform: uppercase; color: var(--muted); opacity: .8; }
+      .compare td.us { margin: 6px -16px -14px; padding: 10px 16px 14px; }
+      .compare td.us::before { color: var(--orange-ink); opacity: 1; }
+    }
+    .note { margin-top: 24px; padding: 20px 22px; border-radius: 20px; background: var(--card); border: 1px solid var(--line); }
+    .note p { color: var(--muted); font-size: 16px; }
+
+    .faq { margin-top: 64px; }
+    .faq h2 { margin-top: 0; }
+    .faq details { border-bottom: 1px solid var(--line); }
+    .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 20px; padding: 20px 0; min-height: 44px; font: 600 19px var(--display); letter-spacing: -.015em; color: var(--ink); }
+    .faq summary::-webkit-details-marker { display: none; }
+    .faq summary i { width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: var(--bg-2); font-style: normal; flex: none; transition: transform .35s var(--ease); }
+    .faq details[open] summary i { transform: rotate(45deg); }
+    .faq details p { color: var(--muted); padding-bottom: 20px; }
+
+    .cta { margin: 80px auto 0; max-width: 980px; padding: clamp(32px, 5vw, 56px); border-radius: var(--r); text-align: center; background: linear-gradient(160deg, #2a170c, #120c08 60%, #0b0b0c); border: 1px solid rgba(255, 138, 61, .22); }
+    .cta h2 { font-size: clamp(32px, 4.4vw, 54px); line-height: 1.02; }
+    .cta p { margin: 16px auto 0; max-width: 46ch; color: var(--muted); }
+    .cta .ctas { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 28px; }
+
+    footer { margin-top: 96px; border-top: 1px solid var(--line); padding: 44px 0 calc(40px + env(safe-area-inset-bottom)); }
+    footer .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px 30px; color: var(--muted); font-size: 14px; }
+    footer nav { display: flex; flex-wrap: wrap; gap: 24px; }
+    footer a { text-decoration: none; min-height: 44px; display: inline-flex; align-items: center; }
+    footer a:hover { color: var(--ink); }
+    @media (prefers-reduced-motion: reduce) { *, *::before, *::after { transition: none !important; } }
+  </style>
+</head>
+<body>
+  <a class="skip" href="#main">Skip to content</a>
+  <header class="bar">
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="NomNom home"></a>
+      <a class="btn btn-dark" href="/#pilot">Book a demo</a>
+    </div>
+  </header>
+
+  <main id="main">
+    <div class="wrap">
+      <nav class="crumbs" aria-label="Breadcrumb"><a href="/">NomNom</a> / Video menu</nav>
+      <section class="intro">
+        <div>
+          <p class="eyebrow">Guide · for restaurant and café owners</p>
+          <h1>What is a <span class="heat">video menu?</span></h1>
+          <p class="lede">A video menu is a digital menu that shows each dish as a short clip. Guests scan the QR code on their table and see the food move, sizzle and pour before they order, right in their phone’s browser.</p>
+          <div class="ctas">
+            <a class="btn btn-heat" href="https://menu.heynomnom.in/?r=pink-apron" target="_blank" rel="noopener">Open a live video menu</a>
+            <a class="btn btn-dark" href="/#pilot">Try it at your café</a>
+          </div>
+        </div>
+        <figure class="clip">
+          <video src="/assets/clips/latte.mp4" poster="/assets/clips/latte.jpg" autoplay muted loop playsinline preload="metadata" aria-label="A latte being poured, as it appears on a video menu"></video>
+          <figcaption><b>Café Latte</b>How a dish looks on a NomNom video menu: a short, muted, looping clip.</figcaption>
+        </figure>
+      </section>
+
+      <article>
+        <h2>Why restaurants are moving from photos to video</h2>
+        <p>Guests already choose where to eat by watching food on Instagram and YouTube. Then they sit down and get a PDF, a list of names, or a few photos that all look alike on a small screen. A video menu closes that gap: the same kind of clip that brought them in now helps them choose what to order.</p>
+        <p>A few seconds of video shows things a photo can’t: the cheese pull, the steam off a dosa, the layers in a dessert as the spoon goes in, the pour of a cold coffee. Guests understand the portion and the texture, so they order with more confidence and are less likely to stop at the one dish they already know.</p>
+
+        <h2>Video menu vs PDF menu vs photo QR menu</h2>
+        <p>All three open from a QR code on the table. What the guest sees next is very different.</p>
+        <div class="compare">
+          <table>
+            <thead><tr><th scope="col"></th><th scope="col">PDF menu</th><th scope="col">Photo QR menu</th><th scope="col">Video menu</th></tr></thead>
+            <tbody>
+              <tr><th scope="row">What guests see</th><td data-label="PDF menu">A scanned copy of the printed menu</td><td data-label="Photo QR menu">Dish names with some photos</td><td data-label="Video menu" class="us">Each dish as a short clip, with price and description</td></tr>
+              <tr><th scope="row">On a phone</th><td data-label="PDF menu">Pinch and zoom to read</td><td data-label="Photo QR menu">Scroll a list</td><td data-label="Video menu" class="us">Swipe like a feed; tap a dish for details</td></tr>
+              <tr><th scope="row">Finding a dish</th><td data-label="PDF menu">Read every page</td><td data-label="Photo QR menu">Categories, sometimes search</td><td data-label="Video menu" class="us">Search plus filters (veg, non-veg, drinks, spicy)</td></tr>
+              <tr><th scope="row">Changing a price or sold-out dish</th><td data-label="PDF menu">Redesign and re-upload the PDF</td><td data-label="Photo QR menu">Edit in a dashboard</td><td data-label="Video menu" class="us">Edit in a dashboard, live in seconds</td></tr>
+              <tr><th scope="row">Pushing best sellers</th><td data-label="PDF menu">Not really</td><td data-label="Photo QR menu">A “bestseller” label</td><td data-label="Video menu" class="us">Rails like “Most loved” and “Chef’s recommendations”</td></tr>
+              <tr><th scope="row">Ordering</th><td data-label="PDF menu">Call the waiter</td><td data-label="Photo QR menu">Sometimes</td><td data-label="Video menu" class="us">Optional table ordering or WhatsApp ordering</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <h2>How a video menu works for your guests</h2>
+        <ol>
+          <li><strong>Scan.</strong> The guest points their phone camera at the QR code on the table. No app to download.</li>
+          <li><strong>Browse.</strong> The menu opens in the browser with clips playing silently as they scroll. Veg and non-veg marks, prices and descriptions sit with each dish.</li>
+          <li><strong>Decide.</strong> Tapping a dish opens it full-size with ingredients, allergens and anything that pairs well.</li>
+          <li><strong>Order.</strong> They call the waiter as usual, or, if you switch it on, order from the table or send the order on WhatsApp (useful for cloud kitchens and takeaway).</li>
+        </ol>
+
+        <h2>What to film (and what to skip)</h2>
+        <p>You don’t need a production crew. A recent phone, good light and a clean table are enough. Start with <strong>10–20 dishes</strong>, not the whole menu:</p>
+        <ul>
+          <li><strong>Your best sellers</strong>, so guests who are unsure land on dishes you know work.</li>
+          <li><strong>Your most visual dishes</strong>: anything that pours, melts, sizzles, stretches or gets cut open.</li>
+          <li><strong>The dishes you want to sell more of</strong>: higher-margin specials and new launches.</li>
+          <li><strong>Drinks and desserts</strong>, which guests add on when they can see them.</li>
+        </ul>
+        <h3>Shooting tips</h3>
+        <ul>
+          <li>Shoot vertical, 3–8 seconds per dish, one dish per clip.</li>
+          <li>Natural daylight from a window beats overhead tube lights.</li>
+          <li>Show one moment of action: the pour, the cut, the first spoonful.</li>
+          <li>Skip text, stickers and music. The menu adds the name and price, and clips play muted.</li>
+          <li>Reels you already posted work too, trimmed to the part where the dish is the star.</li>
+        </ul>
+        <div class="note"><p>On NomNom, clips are compressed for phones when you upload them, and a photo shows first while the clip loads, so the menu stays quick even on a weak connection.</p></div>
+
+        <h2>How to set up a video menu</h2>
+        <ol>
+          <li><strong>Bring your menu in.</strong> Import it from an Excel or CSV file, a Zomato page or an AirMenus menu, with prices, categories and photos, instead of typing it again.</li>
+          <li><strong>Add clips to your key dishes.</strong> Upload from your phone; dishes without a clip keep their photo.</li>
+          <li><strong>Choose what to highlight.</strong> Mark best sellers, set up a “Most loved” rail and chef’s picks.</li>
+          <li><strong>Print the table QR codes.</strong> Enter your table numbers and print a ready-made sheet. Each code opens the menu with the table number.</li>
+          <li><strong>Keep it fresh.</strong> Change prices, mark a dish sold out or add a new special from the dashboard. Guests see it straight away.</li>
+        </ol>
+        <p>With NomNom, the pilot covers all of this: we set up your menu and first clips and print your QR codes. See it working on a <a href="https://menu.heynomnom.in/?r=pink-apron" target="_blank" rel="noopener">live bakery menu</a>.</p>
+
+        <section class="faq" aria-labelledby="faq-title">
+          <h2 id="faq-title">Questions about video menus</h2>
+          <details><summary>Is a video menu the same as a QR code menu?<i aria-hidden="true">+</i></summary><p>A video menu is a kind of QR code menu. Guests still scan a QR code on the table, but instead of a PDF or a plain list, each dish is shown as a short muted clip with its price, description and veg or non-veg mark.</p></details>
+          <details><summary>Do guests need an app or good internet?<i aria-hidden="true">+</i></summary><p>No app is needed: the menu opens in the phone’s browser. Clips are small (a few seconds, compressed for phones), and on a slow connection guests see the dish photo first while the clip loads.</p></details>
+          <details><summary>How many dishes need a video?<i aria-hidden="true">+</i></summary><p>Not all of them. Start with 10–20 dishes: your best sellers, your most photogenic dishes and the ones you most want guests to order. Everything else can stay as a photo and be filmed later.</p></details>
+          <details><summary>Can we use the reels we already post on Instagram?<i aria-hidden="true">+</i></summary><p>Yes, if they show one dish clearly. Trim each reel to the 3–8 seconds where the dish is the star, with no text overlays, and it works as a menu clip.</p></details>
+          <details><summary>What does a video menu cost?<i aria-hidden="true">+</i></summary><p>It depends on the provider. NomNom starts with a 30-day pilot where we set up your menu, clips and table QR codes, so you can see how guests use it before deciding.</p></details>
+        </section>
+      </article>
+
+      <section class="cta" aria-labelledby="cta-title">
+        <h2 id="cta-title">See your menu <span class="heat">in motion.</span></h2>
+        <p>Try NomNom at your restaurant for 30 days. We set up the menu, the first clips and your table QR codes.</p>
+        <div class="ctas">
+          <a class="btn btn-heat" href="mailto:contact@heynomnom.in?subject=NomNom%20video%20menu%20pilot">Email us for a pilot</a>
+          <a class="btn btn-dark" href="/#pilot">What’s in the pilot</a>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <a class="logo" href="/" aria-label="NomNom home"></a>
+      <nav aria-label="Footer"><a href="/">Home</a><a href="/video-menu/">What is a video menu?</a><a href="/#pilot">Pilot</a><a href="https://menu.heynomnom.in/admin/">Owner sign-in</a></nav>
+      <span>© 2026 NomNom · Make them see it. Make them crave it.</span>
+    </div>
+  </footer>
+</body>
+</html>
