@@ -1,12 +1,88 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Add every new page (guides, blog posts, city pages) here, with the date it last changed. -->
+<!-- Built by tools/build-restaurants.mjs. Add other new pages (guides, blog posts) to the list in that script. -->
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://heynomnom.in/</loc>
-    <lastmod>2026-11-27</lastmod>
+    <lastmod>2026-11-28</lastmod>
   </url>
   <url>
     <loc>https://heynomnom.in/video-menu/</loc>
     <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/arabico/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/beyond-bakes/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/pink-apron/</loc>
+    <lastmod>2026-11-24</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/giore-bakehouse/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/waffle-de-paris/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/accai-it-upp/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/creme-patisserie/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/annette-patisserie/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/cavallo/</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/drips-coffee-house/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/fired-up/</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/house-of-masa/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/le-sucrier/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/mat-co-mo/</loc>
+    <lastmod>2026-11-25</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/monicas/</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/sugar-spice/</loc>
+    <lastmod>2026-11-26</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/the-sugar-affair/</loc>
+    <lastmod>2026-11-27</lastmod>
+  </url>
+  <url>
+    <loc>https://heynomnom.in/restaurants/threeoseven-bakehouse/</loc>
+    <lastmod>2026-11-25</lastmod>
   </url>
 </urlset>
